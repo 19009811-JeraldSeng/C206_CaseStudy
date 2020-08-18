@@ -26,12 +26,10 @@ public class C206_CaseStudy {
 
 		// Jerald
 		menu();
-		int option = Helper.readInt("Enter an option");
+		int option = Helper.readInt("Enter an option > ");
 
 		// Syakir
 		while (option != 6) {
-
-			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
 				UserAccount(accountList);
@@ -48,8 +46,10 @@ public class C206_CaseStudy {
 
 			}
 			menu();
-			option = Helper.readInt("Enter an option");
+			option = Helper.readInt("Enter an option > ");
+
 		}
+		System.out.println("Thank you for using RenovationAce program!");
 	}
 
 	// Syakir
@@ -89,15 +89,17 @@ public class C206_CaseStudy {
 				String role = Helper.readString("Enter your role > ");
 				String email = Helper.readString("Enter your email > ");
 				String password = Helper.readString("Enter a password > ");
-				String status = Helper.readString("Enter your status > ");
-				accountList.add(new UserAccount(name, role, email, password, status));
+
+				accountList.add(new UserAccount(name, role, email, password));
 				System.out.println("Successfully added!");
 			} else if (option == 2) {
 				System.out.println("VIEW ALL USERS");
 				Helper.line(80, "-");
+
 				for (int i = 0; i < accountList.size(); i++) {
 					accountList.get(i).viewUser();
 					System.out.println();
+
 				}
 			} else if (option == 3) {
 				System.out.println("DELETE USER BY NAME");
@@ -105,8 +107,9 @@ public class C206_CaseStudy {
 				String delUser = Helper.readString("Enter name to delete > ");
 				boolean isDeleted = false;
 				for (int i = 0; i < accountList.size(); i++) {
-					if (isDeleted == false && accountList.get(i).getName().equalsIgnoreCase(delUser)) {
+					if (isDeleted == false && delUser.equalsIgnoreCase(accountList.get(i).getName())) {
 						accountList.remove(i);
+						isDeleted = true;
 					}
 				}
 				if (isDeleted == true) {
@@ -118,11 +121,13 @@ public class C206_CaseStudy {
 
 			} else {
 				System.out.println("'Invalid option");
+				option = Helper.readInt("Enter an option > ");
 			}
+			System.out.println(
+					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
+			option = Helper.readInt("Enter an option > ");
 		}
-		System.out.println(
-				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
-		option = Helper.readInt("Enter an option > ");
+
 	}
 
 }
