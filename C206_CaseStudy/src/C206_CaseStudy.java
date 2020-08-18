@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
@@ -16,7 +17,7 @@ public class C206_CaseStudy {
 
 		// if using when customer use a different format
 		//DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		//String formattedDate = timeNow.format(formatter1);
+		//String formattedDate = timeNow.format(formatter1); 
 
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 
@@ -34,6 +35,16 @@ public class C206_CaseStudy {
 
 				
 			} else if (option == 3) {
+				//Syakir
+				System.out.println("1. Add an Appointment");
+				System.out.println("2. View all Appointment");
+				System.out.println("3. Delete and Appointment");
+				
+				int apptOption = Helper.readInt("Enter an option > ");
+				
+				if (apptOption == 1) {
+					
+				}
 				
 				
 			} else if (option == 4) {
@@ -70,7 +81,25 @@ public class C206_CaseStudy {
 			Helper.line(80, "-");
 
 	}
+	
 	private static void UserAccount(ArrayList<UserAccount>accountList) {
+		
+		
+		
+	}
+	//Syakir
+	public static Appointment inputAppointment() {
+		
+		String name = Helper.readString("Enter name: ");
+		Date date = Helper.readDate("Enter date: ");
+		
+		
+		return null;
+		
+	}
+	//Syakir
+	private static void Appointment(ArrayList<ArrayList>appointmentList) {
+		C206_CaseStudy.setHeader("APPOINTMENT LIST");
 		
 	}
 
