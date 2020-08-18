@@ -14,12 +14,12 @@ public class UserAccount {
 	private String password;
 	private String status;
 
-	public UserAccount(String name, String role, String email, String password, String status) {
+	public UserAccount(String name, String role, String email, String password) {
 		this.name = name;
 		this.role = role;
 		this.email = email;
 		this.password = password;
-		this.status = status;
+		this.status = "new";
 	}
 
 	public String getName() {
@@ -42,10 +42,12 @@ public class UserAccount {
 		this.password = password;
 	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public void viewUser() {
 		System.out.println(String.format("Name: %s\nRole: %s\nEmail: %s\nStatus: %s", name, role, email, status));
 	}
-	public void deleteUser(String name) {
-		
-	}
+
 }
