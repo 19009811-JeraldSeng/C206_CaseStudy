@@ -1,7 +1,7 @@
 import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 
 public class C206_CaseStudy {
 
@@ -14,8 +14,8 @@ public class C206_CaseStudy {
 		LocalDateTime timeNow = LocalDateTime.now();
 
 		// if using when customer use a different format
-		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		String formattedDate = timeNow.format(formatter1);
+		//DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		//String formattedDate = timeNow.format(formatter1);
 
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 
