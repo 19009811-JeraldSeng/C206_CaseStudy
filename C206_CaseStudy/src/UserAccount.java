@@ -45,7 +45,5 @@ public class UserAccount {
 	public void viewUser() {
 		System.out.println(String.format("Name: %s\nRole: %s\nEmail: %s\nStatus: %s", name, role, email, status));
 	}
-	public void deleteUser(String name) {
-		
-	}
+
 }
