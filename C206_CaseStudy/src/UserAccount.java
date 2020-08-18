@@ -22,10 +22,6 @@ public class UserAccount {
 		this.status = "new";
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -44,6 +40,10 @@ public class UserAccount {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public void viewUser() {
