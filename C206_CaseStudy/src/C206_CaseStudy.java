@@ -10,6 +10,7 @@ public class C206_CaseStudy {
 
 		// Syakir
 		ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
+		ArrayList<UserAccount> accountList = new ArrayList<UserAccount>();
 		LocalDate dateNow = LocalDate.now();
 		LocalDateTime timeNow = LocalDateTime.now();
 
@@ -68,6 +69,9 @@ public class C206_CaseStudy {
 			System.out.println(header);
 			Helper.line(80, "-");
 
+	}
+	private static void UserAccount(ArrayList<UserAccount>accountList) {
+		
 	}
 
 }
