@@ -21,12 +21,12 @@ public class C206_CaseStudy {
 
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 
+		menu();
 		int option = Helper.readInt("Enter an option");
 
 		// Syakir
 		while (option != 6) {
 
-			menu();
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
@@ -41,8 +41,9 @@ public class C206_CaseStudy {
 
 			} else {
 				System.out.println("Invalid option");
-				menu();
+
 			}
+			menu();
 			option = Helper.readInt("Enter an option");
 		}
 	}
@@ -71,12 +72,24 @@ public class C206_CaseStudy {
 	}
 
 	private static void UserAccount(ArrayList<UserAccount> accountList) {
-		System.out.println("USER ACCOUNT");
-		System.out.println("1. Add user account");
-		System.out.println("2. View all users");
-		System.out.println("3. Delete user by name");
+		System.out.println(
+				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
 
-		int option = 0;
+		int option = Helper.readInt("Enter an option > ");
+		while (option != 4) {
+			if (option == 1) {
+
+			} else if (option == 2) {
+
+			} else if (option == 3) {
+
+			} else {
+				System.out.println("'Invalid option");
+			}
+		}
+		System.out.println(
+				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
+		option = Helper.readInt("Enter an option > ");
 	}
 
 }
