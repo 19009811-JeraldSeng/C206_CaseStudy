@@ -3,6 +3,7 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 
 public class C206_CaseStudy {
 
@@ -16,51 +17,48 @@ public class C206_CaseStudy {
 		LocalDateTime timeNow = LocalDateTime.now();
 
 		// if using when customer use a different format
-		//DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		//String formattedDate = timeNow.format(formatter1); 
+		// DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy
+		// HH:mm:ss");
+		// String formattedDate = timeNow.format(formatter1);
 
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 
 		int option = Helper.readInt("Enter an option > ");
 		menu();
-		
-		//Syakir
-		while (option != 6) {
 
-			
+		// Syakir
+		while (option != 6) {
 
 			if (option == 1) {
 				UserAccount(accountList);
 			} else if (option == 2) {
 
-				
 			} else if (option == 3) {
-				//Syakir
+				// Syakir
 				System.out.println("1. Add an Appointment");
 				System.out.println("2. View all Appointment");
 				System.out.println("3. Delete and Appointment");
-				
+
 				int apptOption = Helper.readInt("Enter an option > ");
-				
+
 				if (apptOption == 1) {
-					
+
 				}
-				
-				
+
 			} else if (option == 4) {
 
-				
 			} else if (option == 5) {
-			
-			
+
 			} else {
 				System.out.println("Invalid option");
 			}
 			menu();
 			option = Helper.readInt("Enter an option > ");
-		}System.out.println("Thank you for using RenovationAce program!");
+		}
+		System.out.println("Thank you for using RenovationAce program!");
 	}
-	//Syakir
+
+	// Syakir
 	public static void menu() {
 		C206_CaseStudy.setHeader("RENOVATION ACE");
 		System.out.println("1. User Account");
@@ -77,13 +75,13 @@ public class C206_CaseStudy {
 	 * @param string
 	 */
 	private static void setHeader(String header) {
-			Helper.line(80, "-");
-			System.out.println(header);
-			Helper.line(80, "-");
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
 
 	}
-	
-	private static void UserAccount(ArrayList<UserAccount>accountList) {
+
+	private static void UserAccount(ArrayList<UserAccount> accountList) {
 		System.out.println(
 				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
 
@@ -133,23 +131,24 @@ public class C206_CaseStudy {
 			System.out.println(
 					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
 			option = Helper.readInt("Enter an option > ");
-		
-		
+
+		}
 	}
-	//Syakir
+
+	// Syakir
 	public static Appointment inputAppointment() {
-		
+
 		String name = Helper.readString("Enter name: ");
 		Date date = Helper.readDate("Enter date: ");
-		
-		
+
 		return null;
-		
+
 	}
-	//Syakir
-	private static void Appointment(ArrayList<ArrayList>appointmentList) {
+
+	// Syakir
+	private static void Appointment(ArrayList<ArrayList> appointmentList) {
 		C206_CaseStudy.setHeader("APPOINTMENT LIST");
-		
+
 	}
 
 }
