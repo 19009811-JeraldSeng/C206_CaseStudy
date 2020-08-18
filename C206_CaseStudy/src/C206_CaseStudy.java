@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
@@ -33,13 +33,13 @@ public class C206_CaseStudy {
 
 				
 			} else if (option == 3) {
-
+				
 				
 			} else if (option == 4) {
 
 				
 			} else if (option == 5) {
-				
+			
 			} else if (option == 6){
 				System.out.println("Bye!");
 			} else {
