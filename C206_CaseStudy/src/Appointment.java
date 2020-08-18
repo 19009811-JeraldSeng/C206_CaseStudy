@@ -39,6 +39,17 @@ public class Appointment extends C206_CaseStudy {
 	}
 
 	/**
+	 * @param customerName2
+	 * @param string
+	 * @param string2
+	 * @param designerName2
+	 * @param address2
+	 */
+	public Appointment(String customerName2, String string, String string2, String designerName2, String address2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @return the customerName
 	 */
 	public String getCustomerName() {
