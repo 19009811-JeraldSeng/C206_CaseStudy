@@ -10,11 +10,15 @@ public class C206_CaseStudy {
 		
 		//Syakir
 		ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
+		LocalDate dateNow = LocalDate.now();
+		LocalDateTime timeNow = LocalDateTime.now();
+		
+		//if using when customer use a different format
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = timeNow.format(formatter1);
 		
+		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 		
-		appointmentList.add(new Appointment("Jason", null, null, "Jerome", "Woodlands"));
-
 		
 	}
 
