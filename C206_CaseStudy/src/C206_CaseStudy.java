@@ -22,23 +22,25 @@ public class C206_CaseStudy {
 		int option = 0;
 
 		//Syakir
-		while (option != 5) {
+		while (option != 6) {
 
 			C206_CaseStudy.menu();
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
-				// View all items
 
 			} else if (option == 2) {
-				// Add a new item
 
+				
 			} else if (option == 3) {
-				// Loan item
 
+				
 			} else if (option == 4) {
 
+				
 			} else if (option == 5) {
+				
+			} else if (option == 6){
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
@@ -48,11 +50,12 @@ public class C206_CaseStudy {
 	//Syakir
 	public static void menu() {
 		C206_CaseStudy.setHeader("RENOVATION ACE");
-		System.out.println("1. TEST1");
-		System.out.println("2. TEST2");
-		System.out.println("3. TEST3");
-		System.out.println("4. TEST4");
-		System.out.println("5. TEST5");
+		System.out.println("1. User Account");
+		System.out.println("2. Quotations");
+		System.out.println("3. Appointment");
+		System.out.println("4. Package");
+		System.out.println("5. Request for Quotation");
+		System.out.println("6. Exit");
 		Helper.line(80, "-");
 
 	}
