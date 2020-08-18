@@ -21,16 +21,16 @@ public class C206_CaseStudy {
 
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 
-		int option = 0;
-
+		int option = Helper.readInt("Enter an option > ");
+		menu();
+		
 		//Syakir
 		while (option != 6) {
 
-			C206_CaseStudy.menu();
-			option = Helper.readInt("Enter an option > ");
+			
 
 			if (option == 1) {
-
+				UserAccount(accountList);
 			} else if (option == 2) {
 
 				
@@ -52,12 +52,13 @@ public class C206_CaseStudy {
 				
 			} else if (option == 5) {
 			
-			} else if (option == 6){
-				System.out.println("Bye!");
+			
 			} else {
 				System.out.println("Invalid option");
 			}
-		}
+			menu();
+			option = Helper.readInt("Enter an option > ");
+		}System.out.println("Thank you for using RenovationAce program!");
 	}
 	//Syakir
 	public static void menu() {
@@ -83,7 +84,55 @@ public class C206_CaseStudy {
 	}
 	
 	private static void UserAccount(ArrayList<UserAccount>accountList) {
-		
+		System.out.println(
+				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
+
+		int option = Helper.readInt("Enter an option > ");
+		while (option != 4) {
+			if (option == 1) {
+				System.out.println("ADD USER ACCOUNT");
+				Helper.line(80, "-");
+				String name = Helper.readString("Enter your name > ");
+				String role = Helper.readString("Enter your role > ");
+				String email = Helper.readString("Enter your email > ");
+				String password = Helper.readString("Enter a password > ");
+
+				accountList.add(new UserAccount(name, role, email, password));
+				System.out.println("Successfully added!");
+			} else if (option == 2) {
+				System.out.println("VIEW ALL USERS");
+				Helper.line(80, "-");
+
+				for (int i = 0; i < accountList.size(); i++) {
+					accountList.get(i).viewUser();
+					System.out.println();
+
+				}
+			} else if (option == 3) {
+				System.out.println("DELETE USER BY NAME");
+				Helper.line(80, "-");
+				String delUser = Helper.readString("Enter name to delete > ");
+				boolean isDeleted = false;
+				for (int i = 0; i < accountList.size(); i++) {
+					if (isDeleted == false && delUser.equalsIgnoreCase(accountList.get(i).getName())) {
+						accountList.remove(i);
+						isDeleted = true;
+					}
+				}
+				if (isDeleted == true) {
+					System.out.println(
+							String.format("Account and details of %s has been successfully deleted!", delUser));
+				} else {
+					System.out.println(String.format("%s is not registered to the system", delUser));
+				}
+
+			} else {
+				System.out.println("'Invalid option");
+				option = Helper.readInt("Enter an option > ");
+			}
+			System.out.println(
+					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
+			option = Helper.readInt("Enter an option > ");
 		
 		
 	}
