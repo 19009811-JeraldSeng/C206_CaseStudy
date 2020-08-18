@@ -9,16 +9,17 @@ import java.util.Date;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 /**
  * @author 19030130
  *
  */
 //Done by Syakir
-public class Appointment {
+public class Appointment extends C206_CaseStudy{
 	
 	private String customerName;
 	private LocalDate appointmentDate;
-	private LocalDateTime appointmentTime;
+	private LocalTime appointmentTime;
 	private String designerName;
 	private String address;
 	/**
@@ -28,7 +29,7 @@ public class Appointment {
 	 * @param designerName
 	 * @param address
 	 */
-	public Appointment(String customerName, LocalDate appointmentDate, LocalDateTime appointmentTime, String designerName,
+	public Appointment(String customerName, LocalDate appointmentDate, LocalTime appointmentTime, String designerName,
 			String address) {
 		this.customerName = customerName;
 		this.appointmentDate = appointmentDate;
@@ -63,13 +64,13 @@ public class Appointment {
 	/**
 	 * @return the appointmentTime
 	 */
-	public LocalDateTime getAppointmentTime() {
+	public LocalTime getAppointmentTime() {
 		return appointmentTime;
 	}
 	/**
 	 * @param appointmentTime the appointmentTime to set
 	 */
-	public void setAppointmentTime(LocalDateTime appointmentTime) {
+	public void setAppointmentTime(LocalTime appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
 	/**
