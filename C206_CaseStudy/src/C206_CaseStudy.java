@@ -12,7 +12,10 @@ public class C206_CaseStudy {
 
 		// Syakir
 		ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
+		// Jerald
 		ArrayList<UserAccount> accountList = new ArrayList<UserAccount>();
+		// Fatheen
+		ArrayList<Package> packageList = new ArrayList<Package>();
 		LocalDate dateNow = LocalDate.now();
 		LocalDateTime timeNow = LocalDateTime.now();
 
@@ -21,14 +24,17 @@ public class C206_CaseStudy {
 		// HH:mm:ss");
 		// String formattedDate = timeNow.format(formatter1);
 
+		// Syakir
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
-
 		// Jerald: Adding a customer to the user account list
 		accountList.add(new UserAccount("Joe", "Customer", "joe@email.com", "Joe123"));
-
 		// Fatheen
-		ArrayList<Package> packageList = new ArrayList<Package>();
 		packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
+
+		for (int i = 0; i < 3; i++) {
+
+		}
+
 		menu();
 		int option = Helper.readInt("Enter an option > ");
 
