@@ -23,9 +23,12 @@ public class C206_CaseStudy {
 
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 
+		// Jerald: Adding a customer to the user account list
+		accountList.add(new UserAccount("Joe", "Customer", "joe@email.com", "Joe123"));
+
 		// Fatheen
-				ArrayList<Package> packageList = new ArrayList<Package>();
-				packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
+		ArrayList<Package> packageList = new ArrayList<Package>();
+		packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
 		menu();
 		int option = Helper.readInt("Enter an option > ");
 
@@ -39,9 +42,9 @@ public class C206_CaseStudy {
 			} else if (option == 3) {
 				// Syakir
 				Appointment(appointmentList);
-				
+
 			} else if (option == 4) {
-				//Fatheen
+				// Fatheen
 				ManagePackage(packageList);
 
 			} else if (option == 5) {
@@ -71,7 +74,7 @@ public class C206_CaseStudy {
 	/**
 	 * @param string
 	 */
-	//Syakir
+	// Syakir
 	private static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
@@ -81,10 +84,10 @@ public class C206_CaseStudy {
 
 	private static void UserAccount(ArrayList<UserAccount> accountList) {
 		System.out.println(
-				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
+				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Update user account\n5. Back to menu");
 
 		int option = Helper.readInt("Enter an option > ");
-		while (option != 4) {
+		while (option != 5) {
 			if (option == 1) {
 				System.out.println("ADD USER ACCOUNT");
 				Helper.line(80, "-");
@@ -95,15 +98,20 @@ public class C206_CaseStudy {
 
 				accountList.add(new UserAccount(name, role, email, password));
 				System.out.println("Successfully added!");
+
 			} else if (option == 2) {
 				System.out.println("VIEW ALL USERS");
 				Helper.line(80, "-");
+				if (accountList.isEmpty()) {
+					System.out.println("NO USERS HAVE BEEN ADDED");
+				} else {
+					for (int i = 0; i < accountList.size(); i++) {
+						accountList.get(i).viewUser();
+						System.out.println();
 
-				for (int i = 0; i < accountList.size(); i++) {
-					accountList.get(i).viewUser();
-					System.out.println();
-
+					}
 				}
+
 			} else if (option == 3) {
 				System.out.println("DELETE USER BY NAME");
 				Helper.line(80, "-");
@@ -122,12 +130,34 @@ public class C206_CaseStudy {
 					System.out.println(String.format("%s is not registered to the system", delUser));
 				}
 
+			} else if (option == 4) {
+				System.out.println("UPDATE USER BY NAME");
+				Helper.line(80, "-");
+				String updtUser = Helper.readString("Enter name to update > ");
+				boolean isUpdated = false;
+				for (int i = 0; i < accountList.size(); i++) {
+					if (isUpdated == false && updtUser.equalsIgnoreCase(accountList.get(i).getName())) {
+						String updtName = Helper.readString("Enter updated name > ");
+						String updtPass = Helper.readString("Enter updated password > ");
+						accountList.get(i).setName(updtName);
+						accountList.get(i).setPassword(updtPass);
+						isUpdated = true;
+					}
+				}
+				if (isUpdated == true) {
+					System.out.println(String.format("Account and details of %s has been successfully!", updtUser));
+				} else {
+					System.out.println(String.format("%s is not registered to the system", updtUser));
+
+				}
+
 			} else {
+
 				System.out.println("'Invalid option");
 				option = Helper.readInt("Enter an option > ");
 			}
 			System.out.println(
-					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Back to menu");
+					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Update user account\n5. Back to menu");
 			option = Helper.readInt("Enter an option > ");
 
 		}
@@ -148,16 +178,17 @@ public class C206_CaseStudy {
 		Appointment appt = new Appointment(name, date, time, designerName, address);
 
 		return appt;
-		
+
 	}
 
 	// Syakir
 	private static void addAppointment(ArrayList<Appointment> appointmentList, Appointment appt) {
-		
+
 		appointmentList.add(appt);
 		System.out.println("Appointment added");
 
-	} //Syakir
+	} // Syakir
+
 	private static void Appointment(ArrayList<Appointment> appointmentList) {
 		C206_CaseStudy.setHeader(
 				"APPOINTMENT LIST \n1. Add appointment \n2. View appointment \n3. Delete appointment\n4. Back to menu");
@@ -287,6 +318,5 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 		}
 	}
-
 
 }
