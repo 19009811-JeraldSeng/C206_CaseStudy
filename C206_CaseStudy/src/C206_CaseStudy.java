@@ -31,6 +31,7 @@ public class C206_CaseStudy {
 		// Fatheen
 		packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
 
+		// Jerald
 		for (int i = 0; i < 3; i++) {
 
 		}
