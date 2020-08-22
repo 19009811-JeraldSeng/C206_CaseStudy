@@ -430,9 +430,21 @@ public class C206_CaseStudy {
 		System.out.println("Status:\n1. New\n2. Confirmed");
 		int status = Helper.readInt("Enter status number > ");
 		if (status == 1) {
-
+			System.out.println("NEW USERS:");
+			for (int i = 0; i < accountList.size(); i++) {
+				if (accountList.get(i).getStatus().equals("new")) {
+					accountList.get(i).viewUser();
+					System.out.println();
+				}
+			}
 		} else if (status == 2) {
 
+			for (int i = 0; i < accountList.size(); i++) {
+				if (accountList.get(i).getStatus().equals("confirmed")) {
+					accountList.get(i).viewUser();
+					System.out.println();
+				}
+			}
 		} else {
 			System.out.println("'Invalid option");
 			status = Helper.readInt("Enter status number > ");
