@@ -64,6 +64,7 @@ public class C206_CaseStudy {
 				UserAccount(accountList);
 			} else if (option == 2) {
 
+				
 			} else if (option == 3) {
 				// Syakir
 				Appointment(appointmentList);
@@ -135,12 +136,12 @@ public class C206_CaseStudy {
 		appointmentList.add(appt);
 		System.out.println("Appointment added");
 
-	} // Syakir
+	} // Syakir 
 
 	private static void Appointment(ArrayList<Appointment> appointmentList) {
 		C206_CaseStudy.setHeader(
 				"APPOINTMENT LIST\n1. Add appointment\n2. View appointment\n3. Delete appointment\n4. Search appointment by name, designer name, appoint-date\n5. "
-						+ "Update appointment with appointment date and time\n6. Back to main menu");
+				+ "Update appointment with appointment date and time\n6. Back to main menu");
 		int option = Helper.readInt("Enter an option > ");
 
 		while (option != 6) {
@@ -196,7 +197,88 @@ public class C206_CaseStudy {
 				} else {
 					System.out.println(String.format("%s has not yet booked an appointment", delAppt));
 				}
-
+			
+			//Sprint 2
+			} else if (option == 4) {
+				System.out.println("SEARCH APPOINTMENT");
+				String searchType = Helper.readString("Search appointment by? (Name/Designer Name/Appoint-Date");
+				
+				if(searchType.equalsIgnoreCase("Name")) {
+					String nameSearch = Helper.readString("Enter name: ");
+					
+					for(int i = 0; i < appointmentList.size(); i++) {
+						
+						if (nameSearch.equalsIgnoreCase(appointmentList.get(i).getCustomerName())) {
+							appointmentList.get(i).showApptDetails();
+						}
+					}
+				} else if (searchType.equalsIgnoreCase("Designer Name")) {
+					String designerSearch = Helper.readString("Enter Designer name :");
+					
+					for(int i = 0; i < appointmentList.size(); i ++) {
+						
+						if(designerSearch.equalsIgnoreCase(appointmentList.get(i).getDesignerName())) {
+							appointmentList.get(i).showApptDetails();
+						}
+					}
+					
+				} else if (searchType.equalsIgnoreCase("Appoint-Date")) {
+					DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+					String inputDate = Helper.readString("Enter date in (MM-dd-yyyy) format : ");
+					LocalDate date = LocalDate.parse(inputDate, formatter1);
+					
+					for (int i = 0; i < appointmentList.size(); i ++) {
+						
+						if(date.equals(appointmentList.get(i).getAppointmentDate())) {
+							appointmentList.get(i).showApptDetails();
+						}
+					}
+					
+						
+				}
+				
+			//Sprint 2
+			} else if (option == 5) {
+				System.out.println("UPDATE APPOINTMENT WITH APPOINT-DATE AND TIME");
+				
+				String retrieveAppt = Helper.readString("Enter Name: ");
+				
+				for(int i = 0; i < appointmentList.size(); i++) {
+					
+					if(retrieveAppt.equalsIgnoreCase(appointmentList.get(i).getCustomerName())) {
+						System.out.println("Your Appointment Date is: " + appointmentList.get(i).getAppointmentDate());
+						
+						DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+						
+						//Get today's date
+						LocalDate today = LocalDate.now();
+						String dateNow = today.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+						
+						//long daysBetween = ChronoUnit.DAYS.between(dateUpdate, today);
+						
+						if(today.isBefore(appointmentList.get(i).getAppointmentDate()))  {
+							//Get date to update
+							String inputDate = Helper.readString("Enter date to update (MM-dd-yyyy) format : ");
+							LocalDate dateUpdate = LocalDate.parse(inputDate, formatter1);
+							
+							//Get time to update
+							DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
+							String inputTime = Helper.readString("Enter time of new Appointment (HH:mm) format : ");
+							LocalTime time = LocalTime.parse(inputTime, formatter2);
+							
+							appointmentList.get(i).setAppointmentDate(dateUpdate);
+							appointmentList.get(i).setAppointmentTime(time);
+							
+							System.out.println("Appointment successfully updated.");
+							
+						} else {
+							
+							System.out.println("Please enter a date before the Appointment!");
+							break;
+						}
+					}
+				}
+			} else {
 				System.out.println("'Invalid option");
 				option = Helper.readInt("Enter an option > ");
 			}
