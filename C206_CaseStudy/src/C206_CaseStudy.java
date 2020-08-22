@@ -32,37 +32,57 @@ public class C206_CaseStudy {
 		packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
 
 		// Jerald
-		for (int i = 0; i < 3; i++) {
+		Helper.line(80, "-");
+		System.out.println("RENOVATION ACE");
+		Helper.line(80, "-");
 
-		}
-
-		menu();
-		int option = Helper.readInt("Enter an option > ");
-
-		// Syakir
-		while (option != 6) {
-
-			if (option == 1) {
-				UserAccount(accountList);
-			} else if (option == 2) {
-
-			} else if (option == 3) {
-				// Syakir
-				Appointment(appointmentList);
-
-			} else if (option == 4) {
-				// Fatheen
-				ManagePackage(packageList);
-
-			} else if (option == 5) {
-
-			} else {
-				System.out.println("Invalid option");
+		boolean login = false;
+		if (login == false) {
+			for (int i = 0; i < 3; i++) {
+				String emailLogin = Helper.readString("Email > ");
+				String passLogin = Helper.readString("Password > ");
+				for (int x = 0; x < accountList.size(); x++) {
+					if (emailLogin.equals(accountList.get(x).getEmail())
+							&& passLogin.equals(accountList.get(x).getPassword())) {
+						login = true;
+					} else {
+						System.out.println(String.format("Invalid credentials\nTries left: %d", 2 - i));
+					}
+				}
 			}
-			menu();
-			option = Helper.readInt("Enter an option > ");
 		}
-		System.out.println("Thank you for using RenovationAce program!");
+		if (login == true) {
+
+			menu();
+			int option = Helper.readInt("Enter an option > ");
+
+			// Syakir
+			while (option != 6) {
+
+				if (option == 1) {
+					UserAccount(accountList);
+				} else if (option == 2) {
+
+				} else if (option == 3) {
+					// Syakir
+					Appointment(appointmentList);
+
+				} else if (option == 4) {
+					// Fatheen
+					ManagePackage(packageList);
+
+				} else if (option == 5) {
+
+				} else {
+					System.out.println("Invalid option");
+				}
+				menu();
+				option = Helper.readInt("Enter an option > ");
+			}
+			System.out.println("Thank you for using RenovationAce program!");
+		} else {
+			System.out.println("You have exceeded the password limit");
+		}
 	}
 
 	// Syakir
