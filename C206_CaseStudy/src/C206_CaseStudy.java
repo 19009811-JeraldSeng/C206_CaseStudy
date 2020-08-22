@@ -36,54 +36,55 @@ public class C206_CaseStudy {
 		System.out.println("RENOVATION ACE");
 		Helper.line(80, "-");
 
-		boolean login = false;
-		if (login == false) {
-			for (int i = 0; i < 3; i++) {
-				String emailLogin = Helper.readString("Email > ");
-				String passLogin = Helper.readString("Password > ");
-				for (int x = 0; x < accountList.size(); x++) {
-					if (emailLogin.equals(accountList.get(x).getEmail())
-							&& passLogin.equals(accountList.get(x).getPassword())) {
-						login = true;
-					} else {
-						System.out.println(String.format("Invalid credentials\nTries left: %d", 2 - i));
-					}
-				}
-			}
-		}
-		if (login == true) {
+//		boolean login = false;
+//		if (login == false) {
+//			for (int i = 0; i < 3; i++) {
+//				String emailLogin = Helper.readString("Email > ");
+//				String passLogin = Helper.readString("Password > ");
+//				for (int x = 0; x < accountList.size(); x++) {
+//					if (emailLogin.equals(accountList.get(x).getEmail())
+//							&& passLogin.equals(accountList.get(x).getPassword())) {
+//						login = true;
+//					} else {
+//						System.out.println(String.format("Invalid credentials\nTries left: %d", 2 - i));
+//					}
+//				}
+//			}
+//		}
+//		if (login == true) {
 
+		menu();
+		int option = Helper.readInt("Enter an option > ");
+
+		// Syakir
+		while (option != 6) {
+
+			if (option == 1) {
+				UserAccount(accountList);
+			} else if (option == 2) {
+
+			} else if (option == 3) {
+				// Syakir
+				Appointment(appointmentList);
+
+			} else if (option == 4) {
+				// Fatheen
+				ManagePackage(packageList);
+
+			} else if (option == 5) {
+
+			} else {
+				System.out.println("Invalid option");
+			}
 			menu();
-			int option = Helper.readInt("Enter an option > ");
-
-			// Syakir
-			while (option != 6) {
-
-				if (option == 1) {
-					UserAccount(accountList);
-				} else if (option == 2) {
-
-				} else if (option == 3) {
-					// Syakir
-					Appointment(appointmentList);
-
-				} else if (option == 4) {
-					// Fatheen
-					ManagePackage(packageList);
-
-				} else if (option == 5) {
-
-				} else {
-					System.out.println("Invalid option");
-				}
-				menu();
-				option = Helper.readInt("Enter an option > ");
-			}
-			System.out.println("Thank you for using RenovationAce program!");
-		} else {
-			System.out.println("You have exceeded the password limit");
+			option = Helper.readInt("Enter an option > ");
 		}
+		System.out.println("Thank you for using RenovationAce program!");
 	}
+//			else {
+//			System.out.println("You have exceeded the password limit");
+//		}
+//}
 
 	// Syakir
 	public static void menu() {
@@ -107,87 +108,6 @@ public class C206_CaseStudy {
 		System.out.println(header);
 		Helper.line(80, "-");
 
-	}
-
-	private static void UserAccount(ArrayList<UserAccount> accountList) {
-		System.out.println(
-				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Update user account\n5. Back to menu");
-
-		int option = Helper.readInt("Enter an option > ");
-		while (option != 5) {
-			if (option == 1) {
-				System.out.println("ADD USER ACCOUNT");
-				Helper.line(80, "-");
-				String name = Helper.readString("Enter your name > ");
-				String role = Helper.readString("Enter your role > ");
-				String email = Helper.readString("Enter your email > ");
-				String password = Helper.readString("Enter a password > ");
-
-				accountList.add(new UserAccount(name, role, email, password));
-				System.out.println("Successfully added!");
-
-			} else if (option == 2) {
-				System.out.println("VIEW ALL USERS");
-				Helper.line(80, "-");
-				if (accountList.isEmpty()) {
-					System.out.println("NO USERS HAVE BEEN ADDED");
-				} else {
-					for (int i = 0; i < accountList.size(); i++) {
-						accountList.get(i).viewUser();
-						System.out.println();
-
-					}
-				}
-
-			} else if (option == 3) {
-				System.out.println("DELETE USER BY NAME");
-				Helper.line(80, "-");
-				String delUser = Helper.readString("Enter name to delete > ");
-				boolean isDeleted = false;
-				for (int i = 0; i < accountList.size(); i++) {
-					if (isDeleted == false && delUser.equalsIgnoreCase(accountList.get(i).getName())) {
-						accountList.remove(i);
-						isDeleted = true;
-					}
-				}
-				if (isDeleted == true) {
-					System.out.println(
-							String.format("Account and details of %s has been successfully deleted!", delUser));
-				} else {
-					System.out.println(String.format("%s is not registered to the system", delUser));
-				}
-
-			} else if (option == 4) {
-				System.out.println("UPDATE USER BY NAME");
-				Helper.line(80, "-");
-				String updtUser = Helper.readString("Enter name to update > ");
-				boolean isUpdated = false;
-				for (int i = 0; i < accountList.size(); i++) {
-					if (isUpdated == false && updtUser.equalsIgnoreCase(accountList.get(i).getName())) {
-						String updtName = Helper.readString("Enter updated name > ");
-						String updtPass = Helper.readString("Enter updated password > ");
-						accountList.get(i).setName(updtName);
-						accountList.get(i).setPassword(updtPass);
-						isUpdated = true;
-					}
-				}
-				if (isUpdated == true) {
-					System.out.println(String.format("Account and details of %s has been successfully!", updtUser));
-				} else {
-					System.out.println(String.format("%s is not registered to the system", updtUser));
-
-				}
-
-			} else {
-
-				System.out.println("'Invalid option");
-				option = Helper.readInt("Enter an option > ");
-			}
-			System.out.println(
-					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Update user account\n5. Back to menu");
-			option = Helper.readInt("Enter an option > ");
-
-		}
 	}
 
 	// Syakir
@@ -346,4 +266,114 @@ public class C206_CaseStudy {
 		}
 	}
 
+// Jerald
+	private static void UserAccount(ArrayList<UserAccount> accountList) {
+		System.out.println(
+				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Search customers list by status\n5. Update user account\n6. Back to menu");
+
+		int option = Helper.readInt("Enter an option > ");
+		while (option != 6) {
+			if (option == 1) {
+				AddUserAccount(accountList);
+			} else if (option == 2) {
+				ViewAllUsers(accountList);
+			} else if (option == 3) {
+				DeleteUser(accountList);
+			} else if (option == 4) {
+				SearchByStatus(accountList);
+			} else if (option == 5) {
+				UpdateUser(accountList);
+			} else {
+
+				System.out.println("'Invalid option");
+				option = Helper.readInt("Enter an option > ");
+			}
+			System.out.println(
+					"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Search customers list by status\n5. Update user account\n6. Back to menu");
+			option = Helper.readInt("Enter an option > ");
+
+		}
+	}
+
+	private static void AddUserAccount(ArrayList<UserAccount> accountList) {
+		System.out.println("ADD USER ACCOUNT");
+		Helper.line(80, "-");
+		String name = Helper.readString("Enter your name > ");
+		String role = Helper.readString("Enter your role > ");
+		String email = Helper.readString("Enter your email > ");
+		String password = Helper.readString("Enter a password > ");
+
+		accountList.add(new UserAccount(name, role, email, password));
+		System.out.println("Successfully added!");
+	}
+
+	private static void ViewAllUsers(ArrayList<UserAccount> accountList) {
+		System.out.println("VIEW ALL USERS");
+		Helper.line(80, "-");
+		if (accountList.isEmpty()) {
+			System.out.println("NO USERS HAVE BEEN ADDED");
+		} else {
+			for (int i = 0; i < accountList.size(); i++) {
+				accountList.get(i).viewUser();
+				System.out.println();
+
+			}
+		}
+	}
+
+	private static void DeleteUser(ArrayList<UserAccount> accountList) {
+		System.out.println("DELETE USER BY NAME");
+		Helper.line(80, "-");
+		String delUser = Helper.readString("Enter name to delete > ");
+		boolean isDeleted = false;
+		for (int i = 0; i < accountList.size(); i++) {
+			if (isDeleted == false && delUser.equalsIgnoreCase(accountList.get(i).getName())) {
+				accountList.remove(i);
+				isDeleted = true;
+			}
+		}
+		if (isDeleted == true) {
+			System.out.println(String.format("Account and details of %s has been successfully deleted!", delUser));
+		} else {
+			System.out.println(String.format("%s is not registered to the system", delUser));
+		}
+	}
+
+	private static void SearchByStatus(ArrayList<UserAccount> accountList) {
+		System.out.println("SEARCH CUSTOMERS LIST BY THEIR STATUS");
+		Helper.line(80, "-");
+		System.out.println("Status:\n1. New\n2. Confirmed");
+		int status = Helper.readInt("Enter status number > ");
+		if (status == 1) {
+
+		} else if (status == 2) {
+
+		} else {
+			System.out.println("'Invalid option");
+			status = Helper.readInt("Enter status number > ");
+		}
+	}
+
+	private static void UpdateUser(ArrayList<UserAccount> accountList) {
+		System.out.println("UPDATE USER BY NAME");
+		Helper.line(80, "-");
+		String updtUser = Helper.readString("Enter name to update > ");
+		boolean isUpdated = false;
+		for (int i = 0; i < accountList.size(); i++) {
+			if (isUpdated == false && updtUser.equalsIgnoreCase(accountList.get(i).getName())) {
+				String updtName = Helper.readString("Enter updated name > ");
+				String updtPass = Helper.readString("Enter updated password > ");
+				accountList.get(i).setName(updtName);
+				accountList.get(i).setPassword(updtPass);
+				isUpdated = true;
+			}
+		}
+		if (isUpdated == true) {
+			System.out.println(String.format("Account and details of %s has been successfully!", updtUser));
+		} else {
+			System.out.println(String.format("%s is not registered to the system", updtUser));
+
+		}
+
+	}
 }
