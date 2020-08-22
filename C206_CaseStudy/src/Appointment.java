@@ -7,7 +7,9 @@
  */
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author 19030130
@@ -22,6 +24,8 @@ public class Appointment extends C206_CaseStudy {
 	private String designerName;
 	private String address;
 
+	
+	
 	/**
 	 * @param customerName
 	 * @param appointmentDate
@@ -120,7 +124,9 @@ public class Appointment extends C206_CaseStudy {
 	}
 
 	public void showApptDetails() {
-
+	
+		
+		System.out.println("Name of Customer: " + customerName);
 		System.out.println("Date of Appointment: " + appointmentDate);
 		System.out.println("Time of Appointment: " + appointmentTime);
 		System.out.println("Designer Name: " + designerName);
