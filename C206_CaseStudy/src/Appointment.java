@@ -8,7 +8,7 @@
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -20,12 +20,10 @@ public class Appointment extends C206_CaseStudy {
 
 	private String customerName;
 	private LocalDate appointmentDate;
-	private LocalDateTime appointmentTime;
+	private LocalTime appointmentTime;
 	private String designerName;
 	private String address;
 
-	
-	
 	/**
 	 * @param customerName
 	 * @param appointmentDate
@@ -33,7 +31,7 @@ public class Appointment extends C206_CaseStudy {
 	 * @param designerName
 	 * @param address
 	 */
-	public Appointment(String customerName, LocalDate appointmentDate, LocalDateTime timeNow, String designerName,
+	public Appointment(String customerName, LocalDate appointmentDate, LocalTime timeNow, String designerName,
 			String address) {
 		this.customerName = customerName;
 		this.appointmentDate = appointmentDate;
@@ -84,14 +82,14 @@ public class Appointment extends C206_CaseStudy {
 	/**
 	 * @return the appointmentTime
 	 */
-	public LocalDateTime getAppointmentTime() {
+	public LocalTime getAppointmentTime() {
 		return appointmentTime;
 	}
 
 	/**
 	 * @param appointmentTime the appointmentTime to set
 	 */
-	public void setAppointmentTime(LocalDateTime appointmentTime) {
+	public void setAppointmentTime(LocalTime appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
 
@@ -124,8 +122,7 @@ public class Appointment extends C206_CaseStudy {
 	}
 
 	public void showApptDetails() {
-	
-		
+
 		System.out.println("Name of Customer: " + customerName);
 		System.out.println("Date of Appointment: " + appointmentDate);
 		System.out.println("Time of Appointment: " + appointmentTime);

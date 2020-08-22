@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
 
@@ -17,8 +18,8 @@ public class C206_CaseStudy {
 		// Fatheen
 		ArrayList<Package> packageList = new ArrayList<Package>();
 		LocalDate dateNow = LocalDate.now();
-		LocalDateTime timeNow = LocalDateTime.now();
-		
+		LocalTime timeNow = LocalTime.now();
+
 		// if using when customer use a different format
 		// DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy
 		// HH:mm:ss");
@@ -118,7 +119,7 @@ public class C206_CaseStudy {
 		LocalDate date = LocalDate.parse(inputDate, formatter1);
 		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
 		String inputTime = Helper.readString("Enter time in (HH:mm) format : ");
-		LocalDateTime time = LocalDateTime.parse(inputTime, formatter2);
+		LocalTime time = LocalTime.parse(inputTime, formatter2);
 		String designerName = Helper.readString("Enter designer name: ");
 		String address = Helper.readString("Enter address");
 
@@ -135,6 +136,7 @@ public class C206_CaseStudy {
 		System.out.println("Appointment added");
 
 	} // Syakir
+
 	private static void Appointment(ArrayList<Appointment> appointmentList) {
 		C206_CaseStudy.setHeader(
 				"APPOINTMENT LIST \n1. Add appointment \n2. View appointment \n3. Delete appointment\n4. Back to menu");
@@ -147,28 +149,27 @@ public class C206_CaseStudy {
 
 				// C206_CaseStudy.addAppointment(appointmentList, appt);
 				String name = Helper.readString("Enter name: ");
-				
+
 				DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-				String inputDate = Helper.readString("Enter date in (MM/dd/yyyy) format : ");
+				String inputDate = Helper.readString("Enter date in (MM-dd-yyyy) format : ");
 				LocalDate date = LocalDate.parse(inputDate, formatter1);
-				
+
 				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
 				String inputTime = Helper.readString("Enter time in (HH:mm) format : ");
-				LocalDateTime time = LocalDateTime.parse(inputTime, formatter2);
-				
+				LocalTime time = LocalTime.parse(inputTime, formatter2);
+
 				String designerName = Helper.readString("Enter designer name: ");
 				String address = Helper.readString("Enter address");
-				
+
 				Appointment appt = new Appointment(name, date, time, designerName, address);
 				appointmentList.add(appt);
 				System.out.println("Appointment added successfully");
-				
+
 			} else if (option == 2) {
 
 				System.out.println("VIEW ALL APPOINTMENT");
 				Helper.line(80, "-");
 
-				
 				for (int i = 0; i < appointmentList.size(); i++) {
 					appointmentList.get(i).showApptDetails();
 					System.out.println();
