@@ -285,6 +285,7 @@ public class C206_CaseStudy {
 			System.out.println(
 					"APPOINTMENT LIST \n1. Add appointment \n2.View appointment \n3. Delete appointment\n4. Back to menu");
 			option = Helper.readInt("Enter an option > ");
+			
 		}
 	}
 
