@@ -118,20 +118,6 @@ public class C206_CaseStudyTest {
 		
 	}
 	
-	@Test
-	public void deleteAppointmentTest() {
-		
-	}
-	
-	@Test
-	public void searchAppointmentTest() {
-		
-	}
-	
-	@Test
-	public void updateAppointmentTest() {
-		
-	}
 	
 	
 	
