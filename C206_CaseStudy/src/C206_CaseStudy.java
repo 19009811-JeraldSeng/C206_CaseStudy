@@ -36,21 +36,53 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 		System.out.println("RENOVATION ACE");
 		Helper.line(80, "-");
+		int maxAttempts = 0;
 
-		int login = Helper.readInt("Log in as:\\n1. Customer\\n2. Admin/Designer");
+		int login = Helper.readInt("Log in as:\n1. Customer\n2. Admin/Designer\n>");
 		if (login == 1) {
+			while (maxAttempts < 3) {
+				String emailLogin = Helper.readString("Email > ");
+				String pwLogin = Helper.readString("Password > ");
+				for (int i = 0; i < accountList.size(); i++) {
+					if (emailLogin.equals(accountList.get(i).getEmail())
+							&& pwLogin.equals(accountList.get(i).getPassword())
+							&& accountList.get(i).getRole().equals("Customer")) {
+						customerMenu();
+						int option = Helper.readInt("Enter an option > ");
+						while (option != 4) {
 
+							if (option == 1) {
+								UserAccount ua = inputUser();
+								RegisterAccount(accountList, ua);
+							} else if (option == 2) {
+
+							} else if (option == 3) {
+
+							} else {
+								System.out.println("Invalid option");
+							}
+							customerMenu();
+							option = Helper.readInt("Enter an option > ");
+						}
+						System.out.println("Thank you for using RenovationAce program!");
+						break;
+					} else {
+						System.out.println("Incorrect email/password.");
+						maxAttempts++;
+					}
+				}
+			}
 		} else if (login == 2) {
-
-			int maxAttempts = 0;
 
 			while (maxAttempts < 3) {
 				String emailLogin = Helper.readString("Email > ");
 				String pwLogin = Helper.readString("Password > ");
 				for (int i = 0; i < accountList.size(); i++) {
 					if (emailLogin.equals(accountList.get(i).getEmail())
-							&& pwLogin.equals(accountList.get(i).getPassword())) {
-						menu();
+							&& pwLogin.equals(accountList.get(i).getPassword())
+							&& accountList.get(i).getRole().equals("Admin")
+							|| accountList.get(i).getRole().equals("Designer")) {
+						adminMenu();
 						int option = Helper.readInt("Enter an option > ");
 
 						// Syakir
@@ -74,7 +106,7 @@ public class C206_CaseStudy {
 							} else {
 								System.out.println("Invalid option");
 							}
-							menu();
+							adminMenu();
 							option = Helper.readInt("Enter an option > ");
 						}
 						System.out.println("Thank you for using RenovationAce program!");
@@ -95,7 +127,7 @@ public class C206_CaseStudy {
 	}
 
 	// Syakir
-	public static void menu() {
+	public static void adminMenu() {
 		C206_CaseStudy.setHeader("RENOVATION ACE");
 		System.out.println("1. User Account");
 		System.out.println("2. Quotations");
@@ -105,6 +137,16 @@ public class C206_CaseStudy {
 		System.out.println("6. Exit");
 		Helper.line(80, "-");
 
+	}
+
+	// Jerald
+	public static void customerMenu() {
+		C206_CaseStudy.setHeader("RENOVATION ACE");
+		System.out.println("1. Registration");
+		System.out.println("2. Request for quotation");
+		System.out.println("3. Manage appointment");
+		System.out.println("4. Exit");
+		Helper.line(80, "-");
 	}
 
 	/**
@@ -410,6 +452,14 @@ public class C206_CaseStudy {
 
 		UserAccount ua = new UserAccount(name, role, email, password);
 		return ua;
+	}
+
+	public static void RegisterAccount(ArrayList<UserAccount> accountList, UserAccount ua) {
+		System.out.println("REGISTER USER ACCOUNT");
+		Helper.line(80, "-");
+
+		accountList.add(ua);
+		System.out.println("Successfully registered!");
 	}
 
 	public static void AddUserAccount(ArrayList<UserAccount> accountList, UserAccount ua) {

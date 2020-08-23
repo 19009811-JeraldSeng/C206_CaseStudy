@@ -35,6 +35,24 @@ public class C206_CaseStudyTest {
 
 	// Jerald
 	@Test
+	public void regUserAccountTest() {
+		// check that accountList is valid, so that can add a new item - boundary
+		assertNotNull("Check if there is valid UserAccount arraylist to add to", accountList);
+		// Given a valid list, after adding 1 item, the size of the list is 1 - normal
+		// The item just added is as same as the first item of the list
+		C206_CaseStudy.RegisterAccount(accountList, ua1);
+		assertEquals("Check that UserAccount arraylist size is 1", 1, accountList.size());
+		assertSame("Check that UserAccount is registered", ua1, accountList.get(0));
+
+		// Add another UserAccount and test The size of the list is 2? -normal
+		// The item just added is as same as the second item of the list
+		C206_CaseStudy.RegisterAccount(accountList, ua2);
+		assertEquals("Check that UserAccount arraylist size is 2", 2, accountList.size());
+		assertSame("Check that UserAccount is registered", ua2, accountList.get(1));
+	}
+
+	// Jerald
+	@Test
 	public void addUserAccountTest() {
 		// check that accountList is valid, so that can add a new item - boundary
 		assertNotNull("Check if there is valid UserAccount arraylist to add to", accountList);
