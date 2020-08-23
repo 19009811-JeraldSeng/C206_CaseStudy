@@ -87,7 +87,6 @@ public class Appointment extends C206_CaseStudy {
 	}
 
 	public String showApptDetails() {
-
 		return String.format("%-10s%-15s%-15s%s", customerName, appointmentDate, appointmentTime, designerName, address);
 		
 	}
