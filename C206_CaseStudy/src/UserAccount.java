@@ -58,8 +58,8 @@ public class UserAccount {
 		this.role = role;
 	}
 
-	public void viewUser() {
-		System.out.println(String.format("Name: %s\nRole: %s\nEmail: %s\nStatus: %s", name, role, email, status));
+	public String viewUser() {
+		return String.format("%-10s%-15s%-15s%s", name, role, email, status);
 	}
 
 }

@@ -100,7 +100,7 @@ public class C206_CaseStudy {
 	 * @param string
 	 */
 	// Syakir
-	private static void setHeader(String header) {
+	public static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
 		Helper.line(80, "-");
@@ -126,14 +126,14 @@ public class C206_CaseStudy {
 	}
 
 	// Syakir
-	private static void addAppointment(ArrayList<Appointment> appointmentList, Appointment appt) {
+	public static void addAppointment(ArrayList<Appointment> appointmentList, Appointment appt) {
 
 		appointmentList.add(appt);
 		System.out.println("Appointment added");
 
 	} // Syakir
 
-	private static void Appointment(ArrayList<Appointment> appointmentList) {
+	public static void Appointment(ArrayList<Appointment> appointmentList) {
 		C206_CaseStudy.setHeader(
 				"APPOINTMENT LIST\n1. Add appointment\n2. View appointment\n3. Delete appointment\n4. Search appointment by name, designer name, appoint-date\n5. "
 						+ "Update appointment with appointment date and time\n6. Back to main menu");
@@ -284,13 +284,13 @@ public class C206_CaseStudy {
 	}
 
 //	// Fatheen
-//	private String code;
-//	private String description;
-//	private LocalDate startDate;
-//	private LocalDate endDate;
-//	private double amount;
+//	public String code;
+//	public String description;
+//	public LocalDate startDate;
+//	public LocalDate endDate;
+//	public double amount;
 
-	private static void ManagePackage(ArrayList<Package> packageList) {
+	public static void ManagePackage(ArrayList<Package> packageList) {
 		Helper.line(90, "-");
 		System.out.println("PACKAGE \n1. Add Package \n2.View Package \n3. Delete package\n4. Back to menu");
 		Helper.line(90, "-");
@@ -347,14 +347,15 @@ public class C206_CaseStudy {
 	}
 
 // Jerald
-	private static void UserAccount(ArrayList<UserAccount> accountList) {
+	public static void UserAccount(ArrayList<UserAccount> accountList) {
 		System.out.println(
 				"USER ACCOUNT\n1. Add user account\n2. View all users\n3. Delete user by name\n4. Search customers list by status\n5. Update user account\n6. Back to menu");
 
 		int option = Helper.readInt("Enter an option > ");
 		while (option != 6) {
 			if (option == 1) {
-				AddUserAccount(accountList);
+				UserAccount ua = inputUser();
+				AddUserAccount(accountList, ua);
 			} else if (option == 2) {
 				ViewAllUsers(accountList);
 			} else if (option == 3) {
@@ -375,33 +376,42 @@ public class C206_CaseStudy {
 		}
 	}
 
-	private static void AddUserAccount(ArrayList<UserAccount> accountList) {
-		System.out.println("ADD USER ACCOUNT");
-		Helper.line(80, "-");
+	public static UserAccount inputUser() {
 		String name = Helper.readString("Enter your name > ");
 		String role = Helper.readString("Enter your role > ");
 		String email = Helper.readString("Enter your email > ");
 		String password = Helper.readString("Enter a password > ");
 
-		accountList.add(new UserAccount(name, role, email, password));
+		UserAccount ua = new UserAccount(name, role, email, password);
+		return ua;
+	}
+
+	public static void AddUserAccount(ArrayList<UserAccount> accountList, UserAccount ua) {
+		System.out.println("ADD USER ACCOUNT");
+		Helper.line(80, "-");
+
+		accountList.add(ua);
 		System.out.println("Successfully added!");
 	}
 
-	private static void ViewAllUsers(ArrayList<UserAccount> accountList) {
-		System.out.println("VIEW ALL USERS");
-		Helper.line(80, "-");
-		if (accountList.isEmpty()) {
-			System.out.println("NO USERS HAVE BEEN ADDED");
-		} else {
-			for (int i = 0; i < accountList.size(); i++) {
-				accountList.get(i).viewUser();
-				System.out.println();
+	public static String retrieveAllUsers(ArrayList<UserAccount> accountList) {
+		String output = "";
+		for (int i = 0; i < accountList.size(); i++) {
+			output += String.format("%s\n", accountList.get(i).viewUser());
 
-			}
 		}
+		return output;
 	}
 
-	private static void DeleteUser(ArrayList<UserAccount> accountList) {
+	public static void ViewAllUsers(ArrayList<UserAccount> accountList) {
+		System.out.println("VIEW ALL USERS");
+		Helper.line(80, "-");
+		String output = String.format("%-10s%-15s%-15s%s", "Name", "Role", "Email", "Status");
+		output += retrieveAllUsers(accountList);
+		System.out.println(output);
+	}
+
+	public static void DeleteUser(ArrayList<UserAccount> accountList) {
 		System.out.println("DELETE USER BY NAME");
 		Helper.line(80, "-");
 		String delUser = Helper.readString("Enter name to delete > ");
@@ -419,7 +429,7 @@ public class C206_CaseStudy {
 		}
 	}
 
-	private static void SearchByStatus(ArrayList<UserAccount> accountList) {
+	public static void SearchByStatus(ArrayList<UserAccount> accountList) {
 		System.out.println("SEARCH CUSTOMERS LIST BY THEIR STATUS");
 		Helper.line(80, "-");
 		System.out.println("Status:\n1. New\n2. Confirmed");
@@ -446,7 +456,7 @@ public class C206_CaseStudy {
 		}
 	}
 
-	private static void UpdateUser(ArrayList<UserAccount> accountList) {
+	public static void UpdateUser(ArrayList<UserAccount> accountList) {
 		System.out.println("UPDATE USER BY NAME");
 		Helper.line(80, "-");
 		String updtUser = Helper.readString("Enter name to update > ");
