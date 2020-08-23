@@ -19,9 +19,11 @@ public class C206_CaseStudyTest {
 	public void setUp() throws Exception {
 
 		apt1 = new Appointment("Jason", "18-8-2020", "11.59", "Jerome", "Woodlands");
+		apt2 = new Appointment("Jack", "20-8-2020", "15:30", "Emily", "Jurong");
 		ua1 = new UserAccount("Joe", "Customer", "joe@email.com", "Joe123");
 		ua2 = new UserAccount("Sal", "Designer", "sal@email.com", "Sal123");
 		accountList = new ArrayList<UserAccount>();
+		appointmentList = new ArrayList<Appointment>();
 	}
 
 	@Test
@@ -73,7 +75,66 @@ public class C206_CaseStudyTest {
 
 		assertEquals("Test that ViewAllUsers list has the above test outputs", testOutput, allUsers);
 	}
-
+	
+	//Syakir
+	@Test
+	public void addAppointmentTest() {
+		// check that appointmentList is null, so can add appointment 
+		assertNotNull("Check that there is no current appointment to add", appointmentList);
+		
+		// After adding appointment, check that it has been added
+		C206_CaseStudy.addAppointment(appointmentList, apt1);
+		assertEquals("Check that the ArrayList size is 1",1, appointmentList.size());
+		assertSame("Check that the appointment has successfully been added", apt1, appointmentList.get(0));
+		
+		// Add another appointment and test the size of the list is 2
+		C206_CaseStudy.addAppointment(appointmentList, apt2);
+		assertEquals("Check that Appointment arraylist size is 2", 2, appointmentList.size());
+		assertSame("Check that Appointment has successfully been added", apt2, appointmentList.get(1));
+		
+	}
+	
+	@Test
+	public void retrieveAppointmentTest() {
+		// Test if appointmentList has been added before
+		assertNotNull("Test if there is valid Appointment arraylist to retrieve", appointmentList);
+		
+		// Test if the list of Appointment retrieved from the C206_CaseStudy is empty
+		String allAppt = C206_CaseStudy.retrieveAllAppointment(appointmentList);
+		String testOutput = "";
+		assertEquals("Check that viewing of appintmentment is empty", testOutput, allAppt);
+		
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		C206_CaseStudy.addAppointment(appointmentList, apt1);
+		C206_CaseStudy.addAppointment(appointmentList, apt2);
+		assertEquals("Test that the Appointment arraylist size is 2", 2, appointmentList.size());
+		
+		// test if the expected output same as the list if appointment retrieved
+		allAppt = C206_CaseStudy.retrieveAllAppointment(appointmentList);
+		testOutput = String.format("%-10s %-15s %-15s %-15s %15s\n", "Jason", "18-8-2020", "11.59", "Jerome", "Woodlands");
+		testOutput += String.format("%-10s %-15s %-15s %-15s %15s\n", "Jack", "20-8-2020", "15:30", "Emily", "Jurong");
+		
+		assertEquals("Test that the Appointment output has the above test outputs", testOutput, allAppt);
+		
+	}
+	
+	@Test
+	public void deleteAppointmentTest() {
+		
+	}
+	
+	@Test
+	public void searchAppointmentTest() {
+		
+	}
+	
+	@Test
+	public void updateAppointmentTest() {
+		
+	}
+	
+	
+	
 	@After
 	public void tearDown() throws Exception {
 	}

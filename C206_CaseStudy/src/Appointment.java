@@ -121,12 +121,9 @@ public class Appointment extends C206_CaseStudy {
 		this.address = address;
 	}
 
-	public void showApptDetails() {
+	public String showApptDetails() {
 
-		System.out.println("Name of Customer: " + customerName);
-		System.out.println("Date of Appointment: " + appointmentDate);
-		System.out.println("Time of Appointment: " + appointmentTime);
-		System.out.println("Designer Name: " + designerName);
-		System.out.println("Address of Appointment: " + address);
+		return String.format("%-10s%-15s%-15s%s", customerName, appointmentDate, appointmentTime, designerName, address);
+		
 	}
 }

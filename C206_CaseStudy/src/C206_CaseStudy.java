@@ -281,6 +281,16 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 
 		}
+
+	}
+
+	public static String retrieveAllAppointment(ArrayList<Appointment> appointmentList) {
+		String output =  "";
+		for (int i = 0; i < appointmentList.size(); i++) {
+			output += appointmentList.get(i).showApptDetails();
+			
+		}
+		return output;
 	}
 
 //	// Fatheen
@@ -478,4 +488,5 @@ public class C206_CaseStudy {
 		}
 
 	}
+
 }
