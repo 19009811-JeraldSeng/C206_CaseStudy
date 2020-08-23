@@ -461,7 +461,7 @@ public class C206_CaseStudy {
 			}
 		}
 		if (isUpdated == true) {
-			System.out.println(String.format("Account and details of %s has been successfully!", updtUser));
+			System.out.println(String.format("Account and details of %s has been successfully updated!", updtUser));
 		} else {
 			System.out.println(String.format("%s is not registered to the system", updtUser));
 
