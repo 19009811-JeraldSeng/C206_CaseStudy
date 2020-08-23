@@ -411,7 +411,7 @@ public class C206_CaseStudy {
 	public static void ViewAllUsers(ArrayList<UserAccount> accountList) {
 		System.out.println("VIEW ALL USERS");
 		Helper.line(80, "-");
-		String output = String.format("%-10s%-15s%-15s%s", "Name", "Role", "Email", "Status");
+		String output = String.format("%-10s%-15s%-15s%s\n", "Name", "Role", "Email", "Status");
 		output += retrieveAllUsers(accountList);
 		System.out.println(output);
 	}
@@ -440,6 +440,7 @@ public class C206_CaseStudy {
 	}
 
 	public static int inputNumber() {
+		System.out.println("Status:\n1. New\n2. Confirmed");
 		int status = Helper.readInt("Enter status number > ");
 		return status;
 	}
@@ -469,7 +470,6 @@ public class C206_CaseStudy {
 	public static void SearchByStatus(ArrayList<UserAccount> accountList, int status) {
 		System.out.println("SEARCH CUSTOMERS LIST BY THEIR STATUS");
 		Helper.line(80, "-");
-		System.out.println("Status:\n1. New\n2. Confirmed");
 
 		if (status == 1) {
 			System.out.println("NEW USERS:");
