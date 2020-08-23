@@ -42,6 +42,10 @@ public class UserAccount {
 		return status;
 	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getPassword() {
 		return password;
 	}

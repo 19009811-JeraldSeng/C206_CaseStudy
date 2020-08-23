@@ -369,11 +369,16 @@ public class C206_CaseStudy {
 			} else if (option == 2) {
 				ViewAllUsers(accountList);
 			} else if (option == 3) {
-				DeleteUser(accountList);
+				String delUser = inputName();
+				DeleteUser(accountList, delUser);
 			} else if (option == 4) {
-				SearchByStatus(accountList);
+				int status = inputNumber();
+				SearchByStatus(accountList, status);
 			} else if (option == 5) {
-				UpdateUser(accountList);
+				String updtUser = inputUpdateUser();
+				String updtName = inputUpdateName();
+				String updtPass = inputUpdatePass();
+				UpdateUser(accountList, updtUser, updtName, updtPass);
 			} else {
 
 				System.out.println("'Invalid option");
@@ -416,15 +421,20 @@ public class C206_CaseStudy {
 	public static void ViewAllUsers(ArrayList<UserAccount> accountList) {
 		System.out.println("VIEW ALL USERS");
 		Helper.line(80, "-");
-		String output = String.format("%-10s%-15s%-15s%s", "Name", "Role", "Email", "Status");
+		String output = String.format("%-10s%-15s%-15s%s\n", "Name", "Role", "Email", "Status");
 		output += retrieveAllUsers(accountList);
 		System.out.println(output);
 	}
 
-	public static void DeleteUser(ArrayList<UserAccount> accountList) {
+	public static String inputName() {
+		String delUser = Helper.readString("Enter name to delete > ");
+		return delUser;
+	}
+
+	public static void DeleteUser(ArrayList<UserAccount> accountList, String delUser) {
 		System.out.println("DELETE USER BY NAME");
 		Helper.line(80, "-");
-		String delUser = Helper.readString("Enter name to delete > ");
+
 		boolean isDeleted = false;
 		for (int i = 0; i < accountList.size(); i++) {
 			if (isDeleted == false && delUser.equalsIgnoreCase(accountList.get(i).getName())) {
@@ -439,42 +449,81 @@ public class C206_CaseStudy {
 		}
 	}
 
-	public static void SearchByStatus(ArrayList<UserAccount> accountList) {
-		System.out.println("SEARCH CUSTOMERS LIST BY THEIR STATUS");
-		Helper.line(80, "-");
+	public static int inputNumber() {
 		System.out.println("Status:\n1. New\n2. Confirmed");
 		int status = Helper.readInt("Enter status number > ");
+		return status;
+	}
+
+	public static String retrieveNewUsers(ArrayList<UserAccount> accountList) {
+		String output = "";
+		for (int i = 0; i < accountList.size(); i++) {
+			if (accountList.get(i).getStatus().equals("new")) {
+				output += String.format("%s\n", accountList.get(i).viewUser());
+			}
+
+		}
+		return output;
+	}
+
+	public static String retrieveConfirmedUsers(ArrayList<UserAccount> accountList) {
+		String output = "";
+		for (int i = 0; i < accountList.size(); i++) {
+			if (accountList.get(i).getStatus().equals("confirmed")) {
+				output += String.format("%s\n", accountList.get(i).viewUser());
+			}
+
+		}
+		return output;
+	}
+
+	public static void SearchByStatus(ArrayList<UserAccount> accountList, int status) {
+		System.out.println("SEARCH CUSTOMERS LIST BY THEIR STATUS");
+		Helper.line(80, "-");
+
 		if (status == 1) {
 			System.out.println("NEW USERS:");
-			for (int i = 0; i < accountList.size(); i++) {
-				if (accountList.get(i).getStatus().equals("new")) {
-					accountList.get(i).viewUser();
-					System.out.println();
-				}
-			}
-		} else if (status == 2) {
+			String output = String.format("%-10s%-15s%-15s%s", "Name", "Role", "Email", "Status");
+			output += retrieveNewUsers(accountList);
+			System.out.println(output);
 
-			for (int i = 0; i < accountList.size(); i++) {
-				if (accountList.get(i).getStatus().equals("confirmed")) {
-					accountList.get(i).viewUser();
-					System.out.println();
-				}
-			}
+		} else if (status == 2) {
+			System.out.println("CONFIRMED USERS:");
+			String output = String.format("%-10s%-15s%-15s%s", "Name", "Role", "Email", "Status");
+			output += retrieveConfirmedUsers(accountList);
+			System.out.println(output);
+
 		} else {
 			System.out.println("'Invalid option");
-			status = Helper.readInt("Enter status number > ");
+			inputNumber();
+
 		}
 	}
 
-	public static void UpdateUser(ArrayList<UserAccount> accountList) {
+	public static String inputUpdateUser() {
+		String updtUser = Helper.readString("Enter name to update > ");
+		return updtUser;
+	}
+
+	public static String inputUpdateName() {
+		String updtName = Helper.readString("Enter updated name > ");
+		return updtName;
+	}
+
+	public static String inputUpdatePass() {
+		String updtPass = Helper.readString("Enter updated password > ");
+		return updtPass;
+	}
+
+	public static void UpdateUser(ArrayList<UserAccount> accountList, String updtUser, String updtName,
+			String updtPass) {
 		System.out.println("UPDATE USER BY NAME");
 		Helper.line(80, "-");
-		String updtUser = Helper.readString("Enter name to update > ");
+
 		boolean isUpdated = false;
 		for (int i = 0; i < accountList.size(); i++) {
 			if (isUpdated == false && updtUser.equalsIgnoreCase(accountList.get(i).getName())) {
-				String updtName = Helper.readString("Enter updated name > ");
-				String updtPass = Helper.readString("Enter updated password > ");
+
 				accountList.get(i).setName(updtName);
 				accountList.get(i).setPassword(updtPass);
 				isUpdated = true;

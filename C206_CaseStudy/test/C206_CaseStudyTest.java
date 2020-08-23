@@ -9,11 +9,12 @@ public class C206_CaseStudyTest {
 
 	private Appointment apt1;
 	private Appointment apt2;
+	private ArrayList<Appointment> appointmentList;
+
+	// Jerald
 	private UserAccount ua1;
 	private UserAccount ua2;
 	private ArrayList<UserAccount> accountList;
-
-	private ArrayList<Appointment> appointmentList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -35,9 +36,9 @@ public class C206_CaseStudyTest {
 	// Jerald
 	@Test
 	public void addUserAccountTest() {
-		// check that accountList is not null, so that can add a new item - boundary
+		// check that accountList is valid, so that can add a new item - boundary
 		assertNotNull("Check if there is valid UserAccount arraylist to add to", accountList);
-		// Given an empty list, after adding 1 item, the size of the list is 1 - normal
+		// Given a valid list, after adding 1 item, the size of the list is 1 - normal
 		// The item just added is as same as the first item of the list
 		C206_CaseStudy.AddUserAccount(accountList, ua1);
 		assertEquals("Check that UserAccount arraylist size is 1", 1, accountList.size());
@@ -50,9 +51,10 @@ public class C206_CaseStudyTest {
 		assertSame("Check that UserAccount is added", ua2, accountList.get(1));
 	}
 
+	// Jerald
 	@Test
 	public void retrieveAllUsersTest() {
-		// Test if accountList is not null but empty -boundary
+		// check that accountList is valid, so that can add a new item - boundary
 		assertNotNull("Test if there is valid UserAccount arraylist to retrieve item", accountList);
 
 		// test if the list of UserAccount retrieved from the C206_CaseStudy is empty -
@@ -67,14 +69,15 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.AddUserAccount(accountList, ua2);
 		assertEquals("Test that UserAccount arraylist size is 2", 2, accountList.size());
 
-		// test if the expected output string same as the list of camcorders retrieved
-		// from the SourceCentre
+		// test if the expected output string same as the list of UserAccounts retrieved
+		// from the C206_CaseStudy
 		allUsers = C206_CaseStudy.retrieveAllUsers(accountList);
 		testOutput = String.format("%-10s%-15s%-15s%s\n", "Joe", "Customer", "joe@email.com", "new");
 		testOutput += String.format("%-10s%-15s%-15s%s\n", "Sal", "Designer", "sal@email.com", "new");
 
 		assertEquals("Test that ViewAllUsers list has the above test outputs", testOutput, allUsers);
 	}
+<<<<<<< HEAD
 	
 	//Syakir
 	@Test
@@ -123,6 +126,63 @@ public class C206_CaseStudyTest {
 	
 	@After
 	public void tearDown() throws Exception {
+=======
+
+	// Jerald
+	@Test
+	public void deleteUserTest() {
+		// check that accountList is valid, so that can add a new item - boundary
+		assertNotNull("Test if there is valid UserAccount arraylist to retrieve item", accountList);
+		C206_CaseStudy.AddUserAccount(accountList, ua1);
+		// Check if the size of accountList decrements by 1 after deleting a user
+		C206_CaseStudy.DeleteUser(accountList, "Joe");
+		assertEquals("Check if User has been deleted properly", 0, accountList.size());
+>>>>>>> branch 'master' of https://github.com/19009811-JeraldSeng/C206_CaseStudy.git
 	}
 
+	public void searchByStatusTest() {
+		// check that accountList is valid, so that can add a new item - boundary
+		assertNotNull("Test if there is valid UserAccount arraylist to retrieve item", accountList);
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		// - normal
+		C206_CaseStudy.AddUserAccount(accountList, ua1);
+		C206_CaseStudy.AddUserAccount(accountList, ua2);
+		assertEquals("Test that UserAccount arraylist size is 2", 2, accountList.size());
+		// set ua1 status to confirm
+		ua1.setStatus("confirmed");
+		// test if the expected output string same as the list of UserAccounts retrieved
+		// from the C206_CaseStudy
+		String newUsers = String.format("%-10s%-15s%-15s%s\n", "Sal", "Designer", "sal@email.com", "new");
+		String confirmedUsers = String.format("%-10s%-15s%-15s%s\n", "Joe", "Customer", "joe@email.com", "confirmed");
+		String newOutput = C206_CaseStudy.retrieveNewUsers(accountList);
+		String confirmedOutput = C206_CaseStudy.retrieveConfirmedUsers(accountList);
+
+		assertEquals("Test that newUsers list has the newOutput", newOutput, newUsers);
+		assertEquals("Test that confirmedUsers list has the confirmedOutput", confirmedOutput, confirmedUsers);
+	}
+
+	public void updateUserTest() {
+		// check that accountList is valid, so that can add a new item - boundary
+		assertNotNull("Test if there is valid UserAccount arraylist to retrieve item", accountList);
+		// Given a valid list, after adding 1 item, the size of the list is 1 - normal
+		// The item just added is as same as the first item of the list
+		C206_CaseStudy.AddUserAccount(accountList, ua1);
+		// Update user
+		C206_CaseStudy.UpdateUser(accountList, "Joe", "Joey", "Joey123");
+		// test if the expected output string same as the list of UserAccounts retrieved
+		// from the C206_CaseStudy
+		String updtOutput = String.format("%-10s%-15s", ua1.getName(), ua1.getPassword());
+		String expectedUpdtOutput = String.format("%-10s%-15s", "Joey", "Joey123");
+
+		assertEquals("Test that updtOutput has the expectedUpdtOutput", updtOutput, expectedUpdtOutput);
+
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		apt1 = null;
+		ua1 = null;
+		ua2 = null;
+		accountList = null;
+	}
 }
