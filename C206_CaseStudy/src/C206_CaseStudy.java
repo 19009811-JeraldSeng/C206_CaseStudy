@@ -28,7 +28,7 @@ public class C206_CaseStudy {
 		// Syakir
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 		// Jerald: Adding a customer to the user account list
-		accountList.add(new UserAccount("Joe", "Customer", "joe@email.com", "Joe123"));
+		accountList.add(new UserAccount("Joe", "Admin", "joe@email.com", "Joe123"));
 		// Fatheen
 		packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
 
@@ -37,49 +37,60 @@ public class C206_CaseStudy {
 		System.out.println("RENOVATION ACE");
 		Helper.line(80, "-");
 
-		int maxAttempts = 0;
+		int login = Helper.readInt("Log in as:\\n1. Customer\\n2. Admin/Designer");
+		if (login == 1) {
 
-		while (maxAttempts < 3) {
-			String emailLogin = Helper.readString("Email > ");
-			String pwLogin = Helper.readString("Password > ");
-			for (int i = 0; i < accountList.size(); i++) {
-				if (emailLogin.equals(accountList.get(i).getEmail())
-						&& pwLogin.equals(accountList.get(i).getPassword())) {
-					menu();
-					int option = Helper.readInt("Enter an option > ");
+		} else if (login == 2) {
 
-					// Syakir
-					while (option != 6) {
+			int maxAttempts = 0;
 
-						if (option == 1) {
-							UserAccount(accountList);
-						} else if (option == 2) {
-
-						} else if (option == 3) {
-							// Syakir
-							Appointment(appointmentList);
-
-						} else if (option == 4) {
-							// Fatheen
-							ManagePackage(packageList);
-
-						} else if (option == 5) {
-
-						} else {
-							System.out.println("Invalid option");
-						}
+			while (maxAttempts < 3) {
+				String emailLogin = Helper.readString("Email > ");
+				String pwLogin = Helper.readString("Password > ");
+				for (int i = 0; i < accountList.size(); i++) {
+					if (emailLogin.equals(accountList.get(i).getEmail())
+							&& pwLogin.equals(accountList.get(i).getPassword())) {
 						menu();
-						option = Helper.readInt("Enter an option > ");
+						int option = Helper.readInt("Enter an option > ");
+
+						// Syakir
+						while (option != 6) {
+
+							if (option == 1) {
+								// Jerald
+								UserAccount(accountList);
+							} else if (option == 2) {
+
+							} else if (option == 3) {
+								// Syakir
+								Appointment(appointmentList);
+
+							} else if (option == 4) {
+								// Fatheen
+								ManagePackage(packageList);
+
+							} else if (option == 5) {
+
+							} else {
+								System.out.println("Invalid option");
+							}
+							menu();
+							option = Helper.readInt("Enter an option > ");
+						}
+						System.out.println("Thank you for using RenovationAce program!");
+						break;
+					} else {
+						System.out.println("Incorrect email/password.");
+						maxAttempts++;
 					}
-					System.out.println("Thank you for using RenovationAce program!");
-					break;
-				} else {
-					System.out.println("Incorrect email/password.");
-					maxAttempts++;
 				}
 			}
+			System.out.println("BLOCK");
+
+		} else {
+			System.out.println("Invalid option");
+			login = Helper.readInt("Log in as:\\n1. Customer\\n2. Admin/Designer");
 		}
-		System.out.println("BLOCK");
 
 	}
 
@@ -285,10 +296,10 @@ public class C206_CaseStudy {
 	}
 
 	public static String retrieveAllAppointment(ArrayList<Appointment> appointmentList) {
-		String output =  "";
+		String output = "";
 		for (int i = 0; i < appointmentList.size(); i++) {
 			output += appointmentList.get(i).showApptDetails();
-			
+
 		}
 		return output;
 	}
