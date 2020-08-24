@@ -347,7 +347,7 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
-	
+
 	public static void deleteAppointment(ArrayList<Appointment> appointmentList) {
 		System.out.println("DELETE APPOINTMENT");
 		Helper.line(80, "-");
@@ -362,11 +362,96 @@ public class C206_CaseStudy {
 		}
 		if (isDeleted == true) {
 			Helper.line(80, "-");
-			System.out.println(
-					String.format("Appointment details of %s has been successfully deleted.", delAppt));
+			System.out.println(String.format("Appointment details of %s has been successfully deleted.", delAppt));
 		} else {
 			System.out.println(String.format("%s has not yet booked an appointment", delAppt));
 		}
+
+	}
+
+	public static void searchAppointment(ArrayList<Appointment> appointmentList) {
+		System.out.println("SEARCH APPOINTMENT");
+		String searchType = Helper.readString("Search appointment by? (Name/Designer Name/Appoint-Date");
+
+		if (searchType.equalsIgnoreCase("Name")) {
+			String nameSearch = Helper.readString("Enter name: ");
+
+			for (int i = 0; i < appointmentList.size(); i++) {
+
+				if (nameSearch.equalsIgnoreCase(appointmentList.get(i).getCustomerName())) {
+					appointmentList.get(i).showApptDetails();
+				}
+			}
+		} else if (searchType.equalsIgnoreCase("Designer Name")) {
+			String designerSearch = Helper.readString("Enter Designer name :");
+
+			for (int i = 0; i < appointmentList.size(); i++) {
+
+				if (designerSearch.equalsIgnoreCase(appointmentList.get(i).getDesignerName())) {
+					appointmentList.get(i).showApptDetails();
+				}
+			}
+
+		} else if (searchType.equalsIgnoreCase("Appoint-Date")) {
+			DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+			String inputDate = Helper.readString("Enter date in (MM-dd-yyyy) format : ");
+			LocalDate date = LocalDate.parse(inputDate, formatter1);
+
+			for (int i = 0; i < appointmentList.size(); i++) {
+
+				if (date.equals(appointmentList.get(i).getAppointmentDate())) {
+					appointmentList.get(i).showApptDetails();
+				}
+			}
+
+		}
+
+	}
+
+	public static void updateAppointment(ArrayList<Appointment> appointmentList) {
+		
+		System.out.println("UPDATE APPOINTMENT WITH APPOINT-DATE AND TIME");
+
+		String retrieveAppt = Helper.readString("Enter Name: ");
+		
+		for (int i = 0; i < appointmentList.size(); i++) {
+			
+			if (retrieveAppt.equalsIgnoreCase(appointmentList.get(i).getCustomerName())) {
+				System.out.println("Your Appointment Date is: " + appointmentList.get(i).getAppointmentDate());
+				
+				DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+				
+				// Get today's date
+				LocalDate today = LocalDate.now();
+				String dateNow = today.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+				
+				// long daysBetween = ChronoUnit.DAYS.between(dateUpdate, today);
+				
+				if (today.isBefore(appointmentList.get(i).getAppointmentDate())) {
+					// Get date to update
+					String inputDate = Helper.readString("Enter date to update (MM-dd-yyyy) format : ");
+					LocalDate dateUpdate = LocalDate.parse(inputDate, formatter1);
+					
+					// Get time to update
+					DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm");
+					String inputTime = Helper.readString("Enter time of new Appointment (HH:mm) format : ");
+					LocalTime time = LocalTime.parse(inputTime, formatter2);
+					
+					appointmentList.get(i).setAppointmentDate(dateUpdate);
+					appointmentList.get(i).setAppointmentTime(time);
+					
+					System.out.println("Appointment successfully updated.");
+					
+					
+				} else {
+					
+					System.out.println("Please enter a date before the Appointment!");
+					break;
+					
+				}
+			}
+		}
+
 	}
 
 //	// Fatheen
@@ -613,6 +698,7 @@ public class C206_CaseStudy {
 				isUpdated = true;
 			}
 		}
+
 		if (isUpdated == true) {
 			System.out.println(String.format("Account and details of %s has been successfully updated!", updtUser));
 		} else {

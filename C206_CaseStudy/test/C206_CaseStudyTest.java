@@ -129,8 +129,9 @@ public class C206_CaseStudyTest {
 
 		assertEquals("Test that newUsers list has the newOutput", newOutput, newUsers);
 		assertEquals("Test that confirmedUsers list has the confirmedOutput", confirmedOutput, confirmedUsers);
-	}
 
+	}
+	
 	// Jerald
 	@Test
 	public void updateUserTest() {
@@ -147,9 +148,9 @@ public class C206_CaseStudyTest {
 		String expectedUpdtOutput = String.format("%-10s%-15s", "Joey", "Joey123");
 
 		assertEquals("Test that updtOutput has the expectedUpdtOutput", updtOutput, expectedUpdtOutput);
-
+		
 	}
-
+	
 	// Syakir
 	@Test
 	public void addAppointmentTest() {
@@ -173,12 +174,12 @@ public class C206_CaseStudyTest {
 	public void viewAppointmentTest() {
 		// Test if appointmentList has been added before
 		assertNotNull("Test if there is valid Appointment arraylist to retrieve", appointmentList);
-		
+
 		// Test if the list of Appointment retrieved from the C206_CaseStudy is empty
 		String allAppt = C206_CaseStudy.viewAllAppointment(appointmentList);
 		String testOutput = "";
 		assertEquals("Check that viewing of appintmentment is empty", testOutput, allAppt);
-		
+
 		// Given an empty list, after adding 2 items, test if the size of the list is 2
 		C206_CaseStudy.addAppointment(appointmentList, apt1);
 		C206_CaseStudy.addAppointment(appointmentList, apt2);
@@ -191,24 +192,61 @@ public class C206_CaseStudyTest {
 //		testOutput += String.format("%-10s %-15s %-15s %-15s %15s\n", "Jack", "20-8-2020", "15:30", "Emily", "Jurong");
 //
 //		assertEquals("Test that the Appointment output has the above test outputs", testOutput, allAppt);
-		
+
 	}
-	
-	//Syakir
+
+	// Syakir
 	@Test
 	public void deleteAppointmentTest() {
 		// Test if appointmentList has been added before
 		assertNotNull("Test if there is valid Appointment arraylist to retrieve", appointmentList);
-		
+
 		// Test if list of Appointment retrieved is not empty after adding
 		C206_CaseStudy.addAppointment(appointmentList, apt1);
 		assertEquals("Test that the Appointment arraylist size is 2", 1, appointmentList.size());
-		
+
 		// Test if appointmentList decreases in number after deletion
 		C206_CaseStudy.deleteAppointment(appointmentList);
 		assertEquals("Check if User has been deleted properly", 0, appointmentList.size());
+
 	}
-	
+
+	// Syakir
+	@Test
+	public void searchAppointmentTest() {
+
+		// check that appointmentList is valid, so that can add a new appointment
+		assertNotNull("Test if there is valid Appointment arraylist to retrieve item", appointmentList);
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		C206_CaseStudy.addAppointment(appointmentList, apt1);
+		C206_CaseStudy.addAppointment(appointmentList, apt2);
+		assertEquals("Test that Appointment arraylist size is 2", 2, appointmentList.size());
+
+		// test if the expected output string same as the list of Appointment retrieved
+
+		String newAppt = String.format("%-10s %-15s %-15s %-15s %15s\n", "Jason", "18-8-2020", "11.59", "Jerome",
+				"Woodlands");
+		String newOutput = C206_CaseStudy.viewAllAppointment(appointmentList);
+
+		assertEquals("Test that Appointment list has the newOutput", newOutput, newAppt);
+
+	}
+
+	public void updateAppointmentTest() {
+		// check that appointmentList is valid, so that can update
+		assertNotNull("Test if there is valid Appointment arraylist to update item", appointmentList);
+		// Given a valid list, after adding 1 item, the size of the list is 1
+		// The appointment just added is as same as the first item of the list
+		C206_CaseStudy.addAppointment(appointmentList, apt1);
+		// Update appointment
+		C206_CaseStudy.updateAppointment(appointmentList);
+		// test if the expected output string same as the list of Appointment retrieved
+		String newOutput = String.format("%-10s%-15s", apt1.getCustomerName(), apt1.getDesignerName());
+		String expectedOutput = String.format("%-10s%-15s", "Jason", "Jerome");
+
+		assertEquals("Test that updtOutput has the expectedUpdtOutput", newOutput, expectedOutput);
+
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -217,5 +255,6 @@ public class C206_CaseStudyTest {
 		ua1 = null;
 		ua2 = null;
 		accountList = null;
+		appointmentList = null;
 	}
 }
