@@ -29,6 +29,8 @@ public class C206_CaseStudy {
 		appointmentList.add(new Appointment("Jason", dateNow, timeNow, "Jerome", "Woodlands"));
 		// Jerald: Adding a customer to the user account list
 		accountList.add(new UserAccount("Joe", "Admin", "joe@email.com", "Joe123"));
+		accountList.add(new UserAccount("Sal", "Customer", "sal@email.com", "Sal123"));
+		accountList.add(new UserAccount("Karen", "Designer", "karen@email.com", "Karen123"));
 		// Fatheen
 		packageList.add(new Package("WTCS", "For Rain", "14/03/2020", "10/04/2020", "42.20"));
 
