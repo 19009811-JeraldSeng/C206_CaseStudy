@@ -339,13 +339,34 @@ public class C206_CaseStudy {
 
 	}
 
-	public static String retrieveAllAppointment(ArrayList<Appointment> appointmentList) {
+	public static String viewAllAppointment(ArrayList<Appointment> appointmentList) {
 		String output = "";
 		for (int i = 0; i < appointmentList.size(); i++) {
 			output += appointmentList.get(i).showApptDetails();
 
 		}
 		return output;
+	}
+	
+	public static void deleteAppointment(ArrayList<Appointment> appointmentList) {
+		System.out.println("DELETE APPOINTMENT");
+		Helper.line(80, "-");
+		String delAppt = Helper.readString("Enter customer name:");
+		boolean isDeleted = false;
+
+		for (int i = 0; i < appointmentList.size(); i++) {
+			if (isDeleted == false && delAppt.equalsIgnoreCase(appointmentList.get(i).getCustomerName())) {
+				appointmentList.remove(i);
+				isDeleted = true;
+			}
+		}
+		if (isDeleted == true) {
+			Helper.line(80, "-");
+			System.out.println(
+					String.format("Appointment details of %s has been successfully deleted.", delAppt));
+		} else {
+			System.out.println(String.format("%s has not yet booked an appointment", delAppt));
+		}
 	}
 
 //	// Fatheen
