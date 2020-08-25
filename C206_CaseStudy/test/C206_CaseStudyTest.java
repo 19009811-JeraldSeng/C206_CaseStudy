@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class C206_CaseStudyTest {
 
@@ -16,6 +18,10 @@ public class C206_CaseStudyTest {
 	private UserAccount ua1;
 	private UserAccount ua2;
 	private ArrayList<UserAccount> accountList;
+	
+	// Wen Zong
+	private ManageQuotations mq1;
+	private ArrayList<ManageQuotations> manageQuotationsList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,6 +32,14 @@ public class C206_CaseStudyTest {
 		ua2 = new UserAccount("Sal", "Designer", "sal@email.com", "Sal123");
 		accountList = new ArrayList<UserAccount>();
 		appointmentList = new ArrayList<Appointment>();
+		// Wen Zong
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String testStringDate = "28-08-2020";
+		LocalDate testDate = LocalDate.parse(testStringDate, formatter2);
+		mq1 = new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate);
+		manageQuotationsList = new ArrayList<ManageQuotations>();
+				
+		manageQuotationsList.add(mq1);
 	}
 
 	@Test
@@ -131,8 +145,9 @@ public class C206_CaseStudyTest {
 
 		assertEquals("Test that newUsers list has the newOutput", newOutput, newUsers);
 		assertEquals("Test that confirmedUsers list has the confirmedOutput", confirmedOutput, confirmedUsers);
-	}
 
+	}
+	
 	// Jerald
 	@Test
 	public void updateUserTest() {
@@ -149,9 +164,9 @@ public class C206_CaseStudyTest {
 		String expectedUpdtOutput = String.format("%-10s%-15s", "Joey", "Joey123");
 
 		assertEquals("Test that updtOutput has the expectedUpdtOutput", updtOutput, expectedUpdtOutput);
-
+		
 	}
-
+	
 	// Syakir
 	@Test
 	public void addAppointmentTest() {
@@ -209,7 +224,76 @@ public class C206_CaseStudyTest {
 		// Test if appointmentList decreases in number after deletion
 		C206_CaseStudy.deleteAppointment(appointmentList);
 		assertEquals("Check if User has been deleted properly", 0, appointmentList.size());
+
 	}
+
+	// Syakir
+	@Test
+	public void searchAppointmentTest() {
+
+		// check that appointmentList is valid, so that can add a new appointment
+		assertNotNull("Test if there is valid Appointment arraylist to retrieve item", appointmentList);
+		// Given an empty list, after adding 2 items, test if the size of the list is 2
+		C206_CaseStudy.addAppointment(appointmentList, apt1);
+		C206_CaseStudy.addAppointment(appointmentList, apt2);
+		assertEquals("Test that Appointment arraylist size is 2", 2, appointmentList.size());
+
+		// test if the expected output string same as the list of Appointment retrieved
+
+		String newAppt = String.format("%-10s %-15s %-15s %-15s %15s\n", "Jason", "18-8-2020", "11.59", "Jerome",
+				"Woodlands");
+		String newOutput = C206_CaseStudy.viewAllAppointment(appointmentList);
+
+		assertEquals("Test that Appointment list has the newOutput", newOutput, newAppt);
+
+	}
+
+	public void updateAppointmentTest() {
+		// check that appointmentList is valid, so that can update
+		assertNotNull("Test if there is valid Appointment arraylist to update item", appointmentList);
+		// Given a valid list, after adding 1 item, the size of the list is 1
+		// The appointment just added is as same as the first item of the list
+		C206_CaseStudy.addAppointment(appointmentList, apt1);
+		// Update appointment
+		C206_CaseStudy.updateAppointment(appointmentList);
+		// test if the expected output string same as the list of Appointment retrieved
+		String newOutput = String.format("%-10s%-15s", apt1.getCustomerName(), apt1.getDesignerName());
+		String expectedOutput = String.format("%-10s%-15s", "Jason", "Jerome");
+
+		assertEquals("Test that updtOutput has the expectedUpdtOutput", newOutput, expectedOutput);
+
+	}
+<<<<<<< HEAD
+=======
+	
+	// Wen Zong
+	@Test
+	public void viewAllQuotations() {
+		assertNotNull("Check if the list is null", manageQuotationsList);
+	}
+	
+	// Wen Zong
+	@Test
+	public void deleteAQuotationByquotationID() {
+		assertNotNull("Check if the list is null", manageQuotationsList);
+	}
+	
+	// Wen Zong
+	@Test
+	public void addAQuotation() {
+		assertNotNull("Check if the list is null", manageQuotationsList);
+		
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String testStringDate = "28-08-2020";
+		LocalDate testDate = LocalDate.parse(testStringDate, formatter2);
+		assertNotNull("Check if the object is null", new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
+//		assertNotNull("Check if the object is null", mq1 = new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
+//		assertNotNull("Check if the object is null", mq1);
+//	
+//		assertNotNull("Check if the list is null", new ArrayList<ManageQuotations>());
+//		assertNotNull("Check if the list is null", manageQuotationsList = new ArrayList<ManageQuotations>());		
+	}
+>>>>>>> branch 'master' of https://github.com/19009811-JeraldSeng/C206_CaseStudy.git
 
 	@After
 	public void tearDown() throws Exception {
@@ -218,5 +302,9 @@ public class C206_CaseStudyTest {
 		ua1 = null;
 		ua2 = null;
 		accountList = null;
+		appointmentList = null;
+		// Wen Zong
+		manageQuotationsList = null;
+		mq1 = null;
 	}
 }
