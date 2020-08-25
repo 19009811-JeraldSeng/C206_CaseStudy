@@ -293,7 +293,6 @@ public class C206_CaseStudyTest {
 //		assertNotNull("Check if the list is null", manageQuotationsList = new ArrayList<ManageQuotations>());		
 	}
 
-	
 	@After
 	public void tearDown() throws Exception {
 		apt1 = null;
