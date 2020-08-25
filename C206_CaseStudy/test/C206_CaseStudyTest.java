@@ -86,7 +86,7 @@ public class C206_CaseStudyTest {
 		// - normal
 		C206_CaseStudy.AddUserAccount(accountList, ua1);
 		C206_CaseStudy.AddUserAccount(accountList, ua2);
-		assertEquals("Test that UserAccount arraylist size is 2", 2, accountList.size());
+		assertEquals("Test that the customer details are in the UserAccount arraylist", 2, accountList.size());
 
 		// test if the expected output string same as the list of UserAccounts retrieved
 		// from the C206_CaseStudy
@@ -94,7 +94,8 @@ public class C206_CaseStudyTest {
 		testOutput = String.format("%-10s%-15s%-15s%s\n", "Joe", "Customer", "joe@email.com", "new");
 		testOutput += String.format("%-10s%-15s%-15s%s\n", "Sal", "Designer", "sal@email.com", "new");
 
-		assertEquals("Test that ViewAllUsers list has the above test outputs", testOutput, allUsers);
+		assertEquals("Test that the administrator is able to see the displayed customer details in the desired format",
+				testOutput, allUsers);
 	}
 
 	// Jerald
@@ -103,6 +104,7 @@ public class C206_CaseStudyTest {
 		// check that accountList is valid, so that can add a new item - boundary
 		assertNotNull("Test if there is valid UserAccount arraylist to retrieve item", accountList);
 		C206_CaseStudy.AddUserAccount(accountList, ua1);
+		assertEquals("Test that the customer details are in the UserAccount arraylist", 1, accountList.size());
 		// Check if the size of accountList decrements by 1 after deleting a user
 		C206_CaseStudy.DeleteUser(accountList, "Joe");
 		assertEquals("Check if User has been deleted properly", 0, accountList.size());
@@ -117,7 +119,7 @@ public class C206_CaseStudyTest {
 		// - normal
 		C206_CaseStudy.AddUserAccount(accountList, ua1);
 		C206_CaseStudy.AddUserAccount(accountList, ua2);
-		assertEquals("Test that UserAccount arraylist size is 2", 2, accountList.size());
+		assertEquals("Test that the customer details are in the UserAccount arraylist", 2, accountList.size());
 		// set ua1 status to confirm
 		ua1.setStatus("confirmed");
 		// test if the expected output string same as the list of UserAccounts retrieved
@@ -173,12 +175,12 @@ public class C206_CaseStudyTest {
 	public void viewAppointmentTest() {
 		// Test if appointmentList has been added before
 		assertNotNull("Test if there is valid Appointment arraylist to retrieve", appointmentList);
-		
+
 		// Test if the list of Appointment retrieved from the C206_CaseStudy is empty
 		String allAppt = C206_CaseStudy.viewAllAppointment(appointmentList);
 		String testOutput = "";
 		assertEquals("Check that viewing of appintmentment is empty", testOutput, allAppt);
-		
+
 		// Given an empty list, after adding 2 items, test if the size of the list is 2
 		C206_CaseStudy.addAppointment(appointmentList, apt1);
 		C206_CaseStudy.addAppointment(appointmentList, apt2);
@@ -191,24 +193,23 @@ public class C206_CaseStudyTest {
 //		testOutput += String.format("%-10s %-15s %-15s %-15s %15s\n", "Jack", "20-8-2020", "15:30", "Emily", "Jurong");
 //
 //		assertEquals("Test that the Appointment output has the above test outputs", testOutput, allAppt);
-		
+
 	}
-	
-	//Syakir
+
+	// Syakir
 	@Test
 	public void deleteAppointmentTest() {
 		// Test if appointmentList has been added before
 		assertNotNull("Test if there is valid Appointment arraylist to retrieve", appointmentList);
-		
+
 		// Test if list of Appointment retrieved is not empty after adding
 		C206_CaseStudy.addAppointment(appointmentList, apt1);
 		assertEquals("Test that the Appointment arraylist size is 2", 1, appointmentList.size());
-		
+
 		// Test if appointmentList decreases in number after deletion
 		C206_CaseStudy.deleteAppointment(appointmentList);
 		assertEquals("Check if User has been deleted properly", 0, appointmentList.size());
 	}
-	
 
 	@After
 	public void tearDown() throws Exception {

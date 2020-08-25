@@ -347,7 +347,7 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
-	
+
 	public static void deleteAppointment(ArrayList<Appointment> appointmentList) {
 		System.out.println("DELETE APPOINTMENT");
 		Helper.line(80, "-");
@@ -362,8 +362,7 @@ public class C206_CaseStudy {
 		}
 		if (isDeleted == true) {
 			Helper.line(80, "-");
-			System.out.println(
-					String.format("Appointment details of %s has been successfully deleted.", delAppt));
+			System.out.println(String.format("Appointment details of %s has been successfully deleted.", delAppt));
 		} else {
 			System.out.println(String.format("%s has not yet booked an appointment", delAppt));
 		}

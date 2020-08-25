@@ -33,46 +33,37 @@ public class Appointment extends C206_CaseStudy {
 		this.address = address;
 	}
 
-
 	public Appointment(String customerName2, String string, String string2, String designerName2, String address2) {
 
 	}
-
 
 	public String getCustomerName() {
 		return customerName;
 	}
 
-
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-
 
 	public LocalDate getAppointmentDate() {
 		return appointmentDate;
 	}
 
-
 	public void setAppointmentDate(LocalDate appointmentDate) {
 		this.appointmentDate = appointmentDate;
 	}
-
 
 	public LocalTime getAppointmentTime() {
 		return appointmentTime;
 	}
 
-
 	public void setAppointmentTime(LocalTime appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
 
-
 	public String getDesignerName() {
 		return designerName;
 	}
-
 
 	public void setDesignerName(String designerName) {
 		this.designerName = designerName;
@@ -87,7 +78,8 @@ public class Appointment extends C206_CaseStudy {
 	}
 
 	public String showApptDetails() {
-		return String.format("%-10s %-15s %-15s %-15s %15s\n", customerName, appointmentDate, appointmentTime, designerName, address);
-		
+		return String.format("%-10s %-15s %-15s %-15s %15s\n", customerName, appointmentDate, appointmentTime,
+				designerName, address);
+
 	}
 }
