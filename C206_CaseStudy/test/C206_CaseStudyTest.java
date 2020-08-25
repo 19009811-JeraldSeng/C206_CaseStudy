@@ -18,7 +18,7 @@ public class C206_CaseStudyTest {
 	private UserAccount ua1;
 	private UserAccount ua2;
 	private ArrayList<UserAccount> accountList;
-	
+
 	// Wen Zong
 	private ManageQuotations mq1;
 	private ArrayList<ManageQuotations> manageQuotationsList;
@@ -38,7 +38,7 @@ public class C206_CaseStudyTest {
 		LocalDate testDate = LocalDate.parse(testStringDate, formatter2);
 		mq1 = new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate);
 		manageQuotationsList = new ArrayList<ManageQuotations>();
-				
+
 		manageQuotationsList.add(mq1);
 	}
 
@@ -147,7 +147,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that confirmedUsers list has the confirmedOutput", confirmedOutput, confirmedUsers);
 
 	}
-	
+
 	// Jerald
 	@Test
 	public void updateUserTest() {
@@ -164,9 +164,9 @@ public class C206_CaseStudyTest {
 		String expectedUpdtOutput = String.format("%-10s%-15s", "Joey", "Joey123");
 
 		assertEquals("Test that updtOutput has the expectedUpdtOutput", updtOutput, expectedUpdtOutput);
-		
+
 	}
-	
+
 	// Syakir
 	@Test
 	public void addAppointmentTest() {
@@ -263,37 +263,35 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that updtOutput has the expectedUpdtOutput", newOutput, expectedOutput);
 
 	}
-<<<<<<< HEAD
-=======
-	
+
 	// Wen Zong
 	@Test
 	public void viewAllQuotations() {
 		assertNotNull("Check if the list is null", manageQuotationsList);
 	}
-	
+
 	// Wen Zong
 	@Test
 	public void deleteAQuotationByquotationID() {
 		assertNotNull("Check if the list is null", manageQuotationsList);
 	}
-	
+
 	// Wen Zong
 	@Test
 	public void addAQuotation() {
 		assertNotNull("Check if the list is null", manageQuotationsList);
-		
+
 		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String testStringDate = "28-08-2020";
 		LocalDate testDate = LocalDate.parse(testStringDate, formatter2);
-		assertNotNull("Check if the object is null", new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
+		assertNotNull("Check if the object is null",
+				new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
 //		assertNotNull("Check if the object is null", mq1 = new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
 //		assertNotNull("Check if the object is null", mq1);
 //	
 //		assertNotNull("Check if the list is null", new ArrayList<ManageQuotations>());
 //		assertNotNull("Check if the list is null", manageQuotationsList = new ArrayList<ManageQuotations>());		
 	}
->>>>>>> branch 'master' of https://github.com/19009811-JeraldSeng/C206_CaseStudy.git
 
 	@After
 	public void tearDown() throws Exception {
