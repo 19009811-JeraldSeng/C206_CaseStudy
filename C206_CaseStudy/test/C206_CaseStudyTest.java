@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class C206_CaseStudyTest {
 
@@ -16,6 +18,10 @@ public class C206_CaseStudyTest {
 	private UserAccount ua1;
 	private UserAccount ua2;
 	private ArrayList<UserAccount> accountList;
+	
+	// Wen Zong
+	private ManageQuotations mq1;
+	private ArrayList<ManageQuotations> manageQuotationsList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,6 +32,14 @@ public class C206_CaseStudyTest {
 		ua2 = new UserAccount("Sal", "Designer", "sal@email.com", "Sal123");
 		accountList = new ArrayList<UserAccount>();
 		appointmentList = new ArrayList<Appointment>();
+		// Wen Zong
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String testStringDate = "28-08-2020";
+		LocalDate testDate = LocalDate.parse(testStringDate, formatter2);
+		mq1 = new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate);
+		manageQuotationsList = new ArrayList<ManageQuotations>();
+				
+		manageQuotationsList.add(mq1);
 	}
 
 	@Test
@@ -247,6 +261,34 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that updtOutput has the expectedUpdtOutput", newOutput, expectedOutput);
 
 	}
+	
+	// Wen Zong
+	@Test
+	public void viewAllQuotations() {
+		assertNotNull("Check if the list is null", manageQuotationsList);
+	}
+	
+	// Wen Zong
+	@Test
+	public void deleteAQuotationByquotationID() {
+		assertNotNull("Check if the list is null", manageQuotationsList);
+	}
+	
+	// Wen Zong
+	@Test
+	public void addAQuotation() {
+		assertNotNull("Check if the list is null", manageQuotationsList);
+		
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String testStringDate = "28-08-2020";
+		LocalDate testDate = LocalDate.parse(testStringDate, formatter2);
+		assertNotNull("Check if the object is null", new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
+//		assertNotNull("Check if the object is null", mq1 = new ManageQuotations("R1", "Q1", "Whole house", "Tiles", 40, "Ali", testDate));
+//		assertNotNull("Check if the object is null", mq1);
+//	
+//		assertNotNull("Check if the list is null", new ArrayList<ManageQuotations>());
+//		assertNotNull("Check if the list is null", manageQuotationsList = new ArrayList<ManageQuotations>());		
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -256,5 +298,8 @@ public class C206_CaseStudyTest {
 		ua2 = null;
 		accountList = null;
 		appointmentList = null;
+		// Wen Zong
+		manageQuotationsList = null;
+		mq1 = null;
 	}
 }
