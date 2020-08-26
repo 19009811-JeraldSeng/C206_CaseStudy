@@ -160,93 +160,103 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 		System.out.println("RENOVATION ACE");
 		Helper.line(80, "-");
-		int maxAttempts = 0;
 
 		int login = Helper.readInt("Log in as:\n1. Customer\n2. Admin/Designer\n>");
 		if (login == 1) {
-			while (maxAttempts < 3) {
-				String emailLogin = Helper.readString("Email > ");
-				String pwLogin = Helper.readString("Password > ");
+
+			String emailLogin = Helper.readString("Email > ");
+			String pwLogin = Helper.readString("Password > ");
+			boolean isTrue = false;
+			while (isTrue != true) {
 				for (int i = 0; i < accountList.size(); i++) {
 					if (emailLogin.equals(accountList.get(i).getEmail())
 							&& pwLogin.equals(accountList.get(i).getPassword())
 							&& accountList.get(i).getRole().equals("Customer")) {
-						customerMenu();
-						int option = Helper.readInt("Enter an option > ");
-						while (option != 4) {
+						isTrue = true;
 
-							if (option == 1) {
-								UserAccount ua = inputUser();
-								RegisterAccount(accountList, ua);
-							} else if (option == 2) {
-								addARequestForQuote(requestForQuoteList);
-							} else if (option == 3) {
-
-							} else {
-								System.out.println("Invalid option");
-							}
-							customerMenu();
-							option = Helper.readInt("Enter an option > ");
-						}
-						System.out.println("Thank you for using RenovationAce program!");
-						break;
-					} else {
-						System.out.println("Incorrect email/password.");
-						maxAttempts++;
 					}
 				}
+				if (isTrue == true) {
+					customerMenu();
+					int option = Helper.readInt("Enter an option > ");
+					while (option != 4) {
+
+						if (option == 1) {
+							UserAccount ua = inputUser();
+							RegisterAccount(accountList, ua);
+						} else if (option == 2) {
+							addARequestForQuote(requestForQuoteList);
+						} else if (option == 3) {
+
+						} else {
+							System.out.println("Invalid option");
+						}
+						customerMenu();
+						option = Helper.readInt("Enter an option > ");
+					}
+					System.out.println("Thank you for using RenovationAce program!");
+				} else {
+					System.out.println("Incorrect email/password.");
+					emailLogin = Helper.readString("Email > ");
+					pwLogin = Helper.readString("Password > ");
+				}
 			}
+
 		} else if (login == 2) {
 
-			while (maxAttempts < 3) {
-				String emailLogin = Helper.readString("Email > ");
-				String pwLogin = Helper.readString("Password > ");
+			String emailLogin = Helper.readString("Email > ");
+			String pwLogin = Helper.readString("Password > ");
+			boolean isTrue = false;
+			while (isTrue != true) {
 				for (int i = 0; i < accountList.size(); i++) {
 					if (emailLogin.equals(accountList.get(i).getEmail())
 							&& pwLogin.equals(accountList.get(i).getPassword())
 							&& accountList.get(i).getRole().equals("Admin")
 							|| accountList.get(i).getRole().equals("Designer")) {
-						adminMenu();
-						int option = Helper.readInt("Enter an option > ");
 
-						// Syakir
-						while (option != 6) {
-
-							if (option == 1) {
-								// Jerald
-								UserAccount(accountList);
-							} else if (option == 2) {
-								// Wen Zong
-								manageQuotation(manageQuotationsList, requestForQuoteList);
-							} else if (option == 3) {
-								// Syakir
-								Appointment(appointmentList);
-
-							} else if (option == 4) {
-								// Fatheen
-								ManagePackage(packageList);
-
-							} else if (option == 5) {
-								viewAllRequest(requestForQuoteList);
-							} else {
-								System.out.println("Invalid option");
-							}
-							adminMenu();
-							option = Helper.readInt("Enter an option > ");
-						}
-						System.out.println("Thank you for using RenovationAce program!");
-						break;
-					} else {
-						System.out.println("Incorrect email/password.");
-						maxAttempts++;
+						isTrue = true;
 					}
 				}
+				if (isTrue == true) {
+					adminMenu();
+					int option = Helper.readInt("Enter an option > ");
+
+					// Syakir
+					while (option != 6) {
+
+						if (option == 1) {
+							// Jerald
+							UserAccount(accountList);
+						} else if (option == 2) {
+							// Wen Zong
+							manageQuotation(manageQuotationsList, requestForQuoteList);
+						} else if (option == 3) {
+							// Syakir
+							Appointment(appointmentList);
+
+						} else if (option == 4) {
+							// Fatheen
+							ManagePackage(packageList);
+
+						} else if (option == 5) {
+							viewAllRequest(requestForQuoteList);
+						} else {
+							System.out.println("Invalid option");
+						}
+						adminMenu();
+						option = Helper.readInt("Enter an option > ");
+					}
+					System.out.println("Thank you for using RenovationAce program!");
+				} else {
+					System.out.println("Incorrect email/password.");
+					emailLogin = Helper.readString("Email > ");
+					pwLogin = Helper.readString("Password > ");
+				}
+
 			}
-			System.out.println("BLOCK");
 
 		} else {
 			System.out.println("Invalid option");
-			login = Helper.readInt("Log in as:\\n1. Customer\\n2. Admin/Designer");
 		}
 
 	}
